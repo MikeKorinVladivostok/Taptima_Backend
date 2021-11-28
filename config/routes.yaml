@@ -1,3 +1,6 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+Library_crud:
+  path: /
+  controller: App\Controller\CRUD_Taptima::number
