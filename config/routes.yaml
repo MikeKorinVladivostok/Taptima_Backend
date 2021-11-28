@@ -1,6 +1,10 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
-Library_crud:
+#Library_crud:
+#  path: /
+#  controller: App\Controller\BooksController::index
+
+Add_book:
   path: /
-  controller: App\Controller\CRUD_Taptima::number
+  controller: App\Controller\BooksController::writeData
