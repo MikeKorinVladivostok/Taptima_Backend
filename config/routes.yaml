@@ -5,6 +5,9 @@
 #  path: /
 #  controller: App\Controller\BooksController::index
 
-Add_book:
+GetAllBooks:
   path: /
+  controller: App\Controller\BooksController::writeData
+WriteBook:
+  path: /ajax/add_book
   controller: App\Controller\BooksController::writeData
