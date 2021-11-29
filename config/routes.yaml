@@ -8,4 +8,4 @@ WriteBook:
 
 form:
   path: /form
-  controller: App\Controller\BooksController::index
+  controller: App\Controller\BooksController::formAdd

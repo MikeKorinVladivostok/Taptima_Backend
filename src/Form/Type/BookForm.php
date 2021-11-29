@@ -14,6 +14,10 @@ class BookForm extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
+            ->add('author', TextType::class)
+            ->add('title', TextType::class)
+            ->add('image', \Symfony\Component\Form\Extension\Core\Type\FileType::class)
+            ->add('year', TextType::class)
             ->add('save', SubmitType::class)
         ;
     }

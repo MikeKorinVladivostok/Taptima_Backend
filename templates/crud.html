@@ -28,11 +28,11 @@
                         <thead>
                             <tr>
                                 <th width="5%">id</th>
-                                <th>Название</th>
-                                <th>Автор</th>
-                                <th>Описание</th>
-                                <th>Обложка</th>
-                                <th width="5%">Год публикации</th>
+                                <th width="5%">Название</th>
+                                <th width="10%">Автор</th>
+                                <th width="10%">Описание</th>
+                                <th width="30%">Обложка</th>
+                                <th width="15%">Год публикации</th>
 <!--                                <th>Редактировать</th>-->
                             </tr>
                             </thead>
@@ -43,7 +43,7 @@
                                 <td>{{ dump(arr.name)}}</td>
                                 <td>{{ dump(arr.author)}}</td>
                                 <td>{{ dump(arr.title)}}</td>
-                                <td>{{ dump(arr.image)}}</td>
+                                <td><img src="{{ arr.image }}" alt="" width="135" height="135" class="photo"></td>
                                 <td>{{ dump(arr.year)}}</td>
 <!--                                <td>-->
 <!--                                    <a>-->
