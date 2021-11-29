@@ -1,13 +1,11 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
-#Library_crud:
-#  path: /
-#  controller: App\Controller\BooksController::index
-
-GetAllBooks:
+blog_list:
   path: /
   controller: App\Controller\BooksController::readData
+
 WriteBook:
   path: /ajax/add_book
   controller: App\Controller\BooksController::writeData
+
+form:
+  path: /form
+  controller: App\Controller\BooksController::index
