@@ -32,8 +32,7 @@ class BooksController extends AbstractController
         $entityManager->persist($book);
         $entityManager->flush();
 
-
-        return $this->readData();
+        return $this->redirect('http://taptima/');
 
     }
 
@@ -53,7 +52,7 @@ class BooksController extends AbstractController
 
     public function formAdd() {
         $form = $this -> createForm(\BookForm::class);
-        return $this -> render('books/index.html.twig', ['form' => $form -> createView()]);
+        return $this  -> render('books/index.html.twig', ['form' => $form -> createView()]);
     }
 
 }
