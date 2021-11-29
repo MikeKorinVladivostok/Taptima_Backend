@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Books;
+use phpDocumentor\Reflection\Types\Void_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,8 +16,7 @@ class BooksController extends AbstractController
      */
 
 
-    public function writeData() : Void {
-
+    public function writeData() : Void_ {
         $entityManager = $this->getDoctrine()->getManager();
 
         $book = new Books();
@@ -32,12 +32,21 @@ class BooksController extends AbstractController
 
     }
 
-    public function readData() {
+    public function readData()  {
 
-        $book = new Books();
+        $product = $this->getDoctrine()
+            ->getRepository(Books::class)
+            ->findAll();
 
-        return $this->render('crud.html', [
-            'id' => $book->getId(),
-        ]);
+        if (!$product) {
+            throw $this->createNotFoundException(
+                'No product found for id '
+            );
+        }
+
+        return $this->render('crud.html', array(
+            'array' => $product,
+        ));
+
     }
 }

@@ -37,14 +37,14 @@
                             </tr>
                             </thead>
                             <tbody>
-    <!--                        @foreach($books as $book)-->
+                            {% for arr in array %}
                             <tr>
-                                <td>{{id}}</td>
-                                <td>name</td>
-                                <td>author</td>
-                                <td>title</td>
-                                <td>front</td>
-                                <td>year</td>
+                                <td>{{ dump(arr.id)}}</td>
+                                <td>{{ dump(arr.name)}}</td>
+                                <td>{{ dump(arr.author)}}</td>
+                                <td>{{ dump(arr.title)}}</td>
+                                <td>{{ dump(arr.image)}}</td>
+                                <td>{{ dump(arr.year)}}</td>
 <!--                                <td>-->
 <!--                                    <a>-->
 <!--                                        Редактировать-->
@@ -57,7 +57,7 @@
 <!--                                    </a><br>-->
 <!--                                </td>-->
                             </tr>
-<!--                        @endforeach-->
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>

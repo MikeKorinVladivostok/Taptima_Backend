@@ -7,7 +7,7 @@
 
 GetAllBooks:
   path: /
-  controller: App\Controller\BooksController::writeData
+  controller: App\Controller\BooksController::readData
 WriteBook:
   path: /ajax/add_book
   controller: App\Controller\BooksController::writeData
