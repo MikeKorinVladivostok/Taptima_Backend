@@ -3,7 +3,7 @@ blog_list:
   controller: App\Controller\BooksController::readData
 
 WriteBook:
-  path: /ajax/add_book
+  path: /add
   controller: App\Controller\BooksController::writeData
 
 form:

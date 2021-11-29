@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class BooksController extends AbstractController
 {
 
-    public function writeData() : Void {
+    public function writeData() {
         $entityManager = $this->getDoctrine()->getManager();
 
         $book = new Books();
@@ -25,6 +25,8 @@ class BooksController extends AbstractController
 
         $entityManager->persist($book);
         $entityManager->flush();
+
+        return $this->readData();
 
     }
 
@@ -52,4 +54,5 @@ class BooksController extends AbstractController
         $form = $this -> createForm(\BookForm::class);
         return $this -> render('books/index.html.twig', ['form' => $form -> createView()]);
     }
+
 }
