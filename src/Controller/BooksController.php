@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Books;
+use Doctrine\Persistence\ManagerRegistry;
 use phpDocumentor\Reflection\Types\Void_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -47,6 +48,20 @@ class BooksController extends AbstractController
             'array' => $product,
         ));
 
+    }
+
+
+    public function updateData(ManagerRegistry $doctrine, int $id): Response
+    {
+        $entityManager = $doctrine->getManager();
+        $product = $entityManager->getRepository(Books::class)->find($id);
+
+        $product->setName('New product name!');
+        $entityManager->flush();
+
+        return $this->redirectToRoute('product_show', [
+            'id' => $product->getId()
+        ]);
     }
 
 
