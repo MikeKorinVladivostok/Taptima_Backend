@@ -30,48 +30,62 @@
 
 </head>
 <body>
+<script src="/templates/script.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $('body').on('click', '.toolbar-img', function(){
+        var url = prompt('Введите адрес изображения', 'https://sun9-47.userapi.com/c11145/u17421543/-14/m_0762c474.jpg');
+        document.execCommand('delete', false, null);
+        document.execCommand('selectAll', false, '.toolbar-img' );
+        document.execCommand('insertImage', false, url);
+        return false;
+    });
+</script>
+
 <div class="container" xmlns:max-width="http://www.w3.org/1999/xhtml">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Библиотека</div>
                 <div class="card-body">
-                    <table  class="table table-striped table-bordered" id="dataTable">
-                        <thead>
-                            <tr>
-                                <th width="5%">id</th>
-                                <th width="5%">Название</th>
-                                <th width="10%">Автор</th>
-                                <th width="10%">Описание</th>
-                                <th width="30%">Обложка</th>
-                                <th width="15%">Год публикации</th>
-<!--                                <th>Редактировать</th>-->
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for arr in array %}
-                            <tr>
-                                <td>{{ dump(arr.id)}}</td>
-                                <td>{{ dump(arr.name)}}</td>
-                                <td>{{ dump(arr.author)}}</td>
-                                <td>{{ dump(arr.title)}}</td>
-                                <td><img src="{{ arr.image }}" alt="" width="135" height="135" class="photo"></td>
-                                <td>{{ dump(arr.year)}}</td>
-<!--                                <td>-->
-<!--                                    <a>-->
-<!--                                        Редактировать-->
-<!--                                    </a><br>-->
-<!--                                    <a>-->
-<!--                                        Опубликовать-->
-<!--                                    </a><br>-->
-<!--                                    <a>-->
-<!--                                        Удалить-->
-<!--                                    </a><br>-->
-<!--                                </td>-->
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                    <div class="toolbar">
+                        <table  class="table table-striped table-bordered" id="dataTable">
+                            <thead>
+                                <tr>
+                                    <th width="5%">id</th>
+                                    <th width="5%">Название</th>
+                                    <th width="10%">Автор</th>
+                                    <th width="10%">Описание</th>
+                                    <th width="30%">Обложка</th>
+                                    <th width="15%">Год публикации</th>
+    <!--                                <th>Редактировать</th>-->
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for arr in array %}
+                                <tr>
+                                    <td contenteditable="true">{{ dump(arr.id)}}</td>
+                                    <td contenteditable="true">{{ dump(arr.name)}}</td>
+                                    <td contenteditable="true">{{ dump(arr.author)}}</td>
+                                    <td contenteditable="true">{{ dump(arr.title)}}</td>
+                                    <td contenteditable="true" class="toolbar-img"><img src="{{ arr.image }}" alt="" width="135" height="135" class="photo"></td>
+                                    <td contenteditable="true">{{ dump(arr.year)}}</td>
+    <!--                                <td>-->
+    <!--                                    <a>-->
+    <!--                                        Редактировать-->
+    <!--                                    </a><br>-->
+    <!--                                    <a>-->
+    <!--                                        Опубликовать-->
+    <!--                                    </a><br>-->
+    <!--                                    <a>-->
+    <!--                                        Удалить-->
+    <!--                                    </a><br>-->
+    <!--                                </td>-->
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                     <a href="/form" class="mb-1 btn btn-primary" type="button">
                         Добавить книгу
                     </a>

@@ -9,3 +9,7 @@ WriteBook:
 form:
   path: /form
   controller: App\Controller\BooksController::formAdd
+
+updateData:
+  path: /update
+  controller: App\Controller\BooksController::updateData
