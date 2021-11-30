@@ -7,6 +7,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use phpDocumentor\Reflection\Types\Void_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 
 
@@ -55,27 +56,28 @@ class BooksController extends AbstractController
     }
 
 
-    public function updateData(ManagerRegistry $doctrine, int $id): Response
+    public function updateData(ManagerRegistry $doctrine  ,int $id) :  Response
     {
+//        $session = new Session();
+//        $session->start();
+
         $entityManager = $doctrine->getManager();
         $product = $entityManager->getRepository(Books::class)->find($id);
 
-//        echo '<pre>'.print_r($_POST,true).'</pre>';
+        $response = $_POST;
 
-//        $response = $_POST;
+        $fotoname = rand(1000,9999). time().'_'.$_FILES['book_form']['name']['image'];
+        $destiation_dir = basename('/public/image/'. $fotoname);
+        move_uploaded_file($_FILES['book_form']['tmp_name']['image'], $destiation_dir );
 
-//        $fotoname = rand(1000,9999). time().'_'.$_FILES['book_form']['name']['image'];
-//        $destiation_dir = basename('/public/image/'. $fotoname);
-//        move_uploaded_file($_FILES['book_form']['tmp_name']['image'], $destiation_dir );
+        $product -> setName($response['book_form']['name']);
+        $product -> setAuthor($response['book_form']['author']);
+        $product -> setTitle($response['book_form']['title']);
+        $product -> setImage($destiation_dir);
+        $product -> setYear($response['book_form']['year']);
+        $entityManager->flush();
 //
-//        $product -> setName($response['book_form']['name']);
-//        $product -> setAuthor($response['book_form']['author']);
-//        $product -> setTitle($response['book_form']['title']);
-//        $product -> setImage($destiation_dir);
-//        $product -> setYear($response['book_form']['year']);
-//        $entityManager->flush();
-//
-//        return $this-> readData();
+        return $this-> readData();
     }
 
 
