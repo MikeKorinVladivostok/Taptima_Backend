@@ -48,81 +48,85 @@
         return false;
     });
 
-    // $(document).ready(function(){
-    //     $('.editBtn').on('click',function(){
-    //         //hide edit span
-    //         $(this).closest("tr").find(".editSpan").hide();
-    //
-    //         //show edit input
-    //         $(this).closest("tr").find(".editInput").show();
-    //
-    //         //hide edit button
-    //         $(this).closest("tr").find(".editBtn").hide();
-    //
-    //         //show edit button
-    //         $(this).closest("tr").find(".saveBtn").show();
-    //
-    //     });
-    //
-    //     $('.saveBtn').on('click',function(){
-    //         var trObj = $(this).closest("tr");
-    //         var ID = $(this).closest("tr").attr('id');
-    //         var inputData = $(this).closest("tr").find(".editInput").serialize();
-    //         $.ajax({
-    //             type:'POST',
-    //             url:'userAction.php',
-    //             dataType: "json",
-    //             data:'action=edit&id='+ID+'&'+inputData,
-    //             success:function(response){
-    //                 if(response.status == 'ok'){
-    //                     trObj.find(".editSpan.fname").text(response.data.first_name);
-    //                     trObj.find(".editSpan.lname").text(response.data.last_name);
-    //                     trObj.find(".editSpan.email").text(response.data.email);
-    //
-    //                     trObj.find(".editInput.fname").text(response.data.first_name);
-    //                     trObj.find(".editInput.lname").text(response.data.last_name);
-    //                     trObj.find(".editInput.email").text(response.data.email);
-    //
-    //                     trObj.find(".editInput").hide();
-    //                     trObj.find(".saveBtn").hide();
-    //                     trObj.find(".editSpan").show();
-    //                     trObj.find(".editBtn").show();
-    //                 }else{
-    //                     alert(response.msg);
-    //                 }
-    //             }
-    //         });
-    //     });
-    //
-    //     $('.deleteBtn').on('click',function(){
-    //         //hide delete button
-    //         $(this).closest("tr").find(".deleteBtn").hide();
-    //
-    //         //show confirm button
-    //         $(this).closest("tr").find(".confirmBtn").show();
-    //
-    //     });
-    //
-    //     $('.confirmBtn').on('click',function(){
-    //         var trObj = $(this).closest("tr");
-    //         var ID = $(this).closest("tr").attr('id');
-    //         $.ajax({
-    //             type:'POST',
-    //             url:'userAction.php',
-    //             dataType: "json",
-    //             data:'action=delete&id='+ID,
-    //             success:function(response){
-    //                 if(response.status == 'ok'){
-    //                     trObj.remove();
-    //                 }else{
-    //                     trObj.find(".confirmBtn").hide();
-    //                     trObj.find(".deleteBtn").show();
-    //                     alert(response.msg);
-    //                 }
-    //             }
-    //         });
-    //     });
-    // });
+    $(document).ready(function(){
+        $('.editBtn').on('click',function(){
+            //hide edit span
+            $(this).closest("tr").find(".editSpan").hide();
+
+            //show edit input
+            $(this).closest("tr").find(".editInput").show();
+
+            //hide edit button
+            $(this).closest("tr").find(".editBtn").hide();
+
+            //show edit button
+            $(this).closest("tr").find(".saveBtn").show();
+
+        });
+
+        $('.saveBtn').on('click',function(){
+            var trObj = $(this).closest("tr");
+            var ID = $(this).closest("tr").attr('id');
+            var inputData = $(this).closest("tr").find(".editInput").serialize();
+            $.ajax({
+                type:'POST',
+                url:'/update',
+                dataType: "json",
+                data:'action=edit&id='+ID+'&'+inputData,
+                success:function(response){
+                    if(response.status == 'ok'){
+                        trObj.find(".editSpan.name").text(response.data.name);
+                        trObj.find(".editSpan.author").text(response.data.author);
+                        trObj.find(".editSpan.title").text(response.data.title);
+                        trObj.find(".editSpan.year").text(response.data.year);
+                        trObj.find(".toolbar-img").text(response.data.year);
+
+                        trObj.find(".editInput.name").text(response.data.name);
+                        trObj.find(".editInput.author").text(response.data.author);
+                        trObj.find(".editInput.title").text(response.data.title);
+                        trObj.find(".editInput.image").text(response.data.image);
+                        trObj.find(".editInput.year").text(response.data.year);
+
+                        trObj.find(".editInput").hide();
+                        trObj.find(".saveBtn").hide();
+                        trObj.find(".editSpan").show();
+                        trObj.find(".editBtn").show();
+                    }else{
+                        alert(response.msg);
+                    }
+                }
+            });
+        });
+
+        $('.deleteBtn').on('click',function(){
+            //hide delete button
+            $(this).closest("tr").find(".deleteBtn").hide();
+
+            //show confirm button
+            $(this).closest("tr").find(".confirmBtn").show();
+
+        });
+
+        $('.confirmBtn').on('click',function(){
+            var trObj = $(this).closest("tr");
+            var ID = $(this).closest("tr").attr('id');
+            $.ajax({
+                type:'POST',
+                url:'/update',
+                dataType: "json",
+                data:'action=delete&id='+ID,
+                success:function(response){
+                    if(response.status == 'ok'){
+                        trObj.remove();
+                    }else{
+                        trObj.find(".confirmBtn").hide();
+                        trObj.find(".deleteBtn").show();
+                        alert(response.msg);
+                    }
+                }
+            });
+        });
+    });
 </script>
 
 <div class="container" xmlns:max-width="http://www.w3.org/1999/xhtml">
@@ -141,17 +145,45 @@
                                     <th width="10%">Описание</th>
                                     <th width="30%">Обложка</th>
                                     <th width="15%">Год публикации</th>
+                                    <th width="15%">Действия</th>
                                 </tr>
                                 </thead>
                                 <tbody id="userData">
                                 {% for arr in array %}
-                                <tr>
+                                <tr id="{{ arr.id}}">
                                     <td>{{ arr.id}}</td>
-                                    <td contenteditable="true" class="bookname" >{{ arr.name}}</td>
-                                    <td contenteditable="true" class="author" >{{ arr.author}}</td>
-                                    <td contenteditable="true" class="title" >{{ arr.title}}</td>
-                                    <td contenteditable="true" class="toolbar-img"><img src="{{ arr.image }}" alt="" width="135" height="135" class="photo"></td>
-                                    <td contenteditable="true" class="year">{{ arr.year}}</td>
+                                    <td>
+                                        <span class="editSpan name">{{ arr.name}}</span>
+                                        <input class="editInput name form-control input-sm" type="text" name="name"
+                                               value="{{ arr.name}}" style="display: none;">
+                                    </td>
+                                    <td>
+                                        <span class="editSpan author">{{ arr.author}}</span>
+                                        <input class="editInput author form-control input-sm" type="text" name="author"
+                                               value="{{ arr.author}}" style="display: none;">
+                                    </td>
+                                    <td>
+                                        <span class="editSpan title">{{ arr.title}}</span>
+                                        <input class="editInput title form-control input-sm" type="text" name="title"
+                                               value="{{ arr.title}}" style="display: none;">
+                                    </td>
+<!--                                    <td><img src="{{ arr.image }}" alt="" width="135" height="135" class="photo">-->
+<!--                                        <input class="editInput image form-control input-sm" type="file" name="image"-->
+<!--                                               value="{{ arr.image}}" style="display: none;">-->
+<!--                                    </td>-->
+                                    <td>
+                                        <span class="editSpan year">{{ arr.year}}</span>
+                                        <input class="editInput year form-control input-sm" type="text" name="year"
+                                               value="{{ arr.year}}" style="display: none;">
+                                    </td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm">
+                                            <button type="button" class="btn btn-sm btn-default editBtn" style="float: none;"><span class="glyphicon glyphicon-pencil"></span></button>
+                                            <button type="button" class="btn btn-sm btn-default deleteBtn" style="float: none;"><span class="glyphicon glyphicon-trash"></span></button>
+                                        </div>
+                                        <button type="button" class="btn btn-sm btn-success saveBtn" style="float: none; display: none;">Save</button>
+                                        <button type="button" class="btn btn-sm btn-danger confirmBtn" style="float: none; display: none;">Confirm</button>
+                                    </td>
                                 </tr>
                                 {% endfor %}
                             </tbody>

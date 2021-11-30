@@ -56,29 +56,39 @@ class BooksController extends AbstractController
     }
 
 
-    public function updateData(ManagerRegistry $doctrine  ,int $id) :  Response
+    public function updateData(ManagerRegistry $doctrine  ) :  Response
     {
 //        $session = new Session();
 //        $session->start();
-
-        $entityManager = $doctrine->getManager();
-        $product = $entityManager->getRepository(Books::class)->find($id);
-
-        $response = $_POST;
-
-        $fotoname = rand(1000,9999). time().'_'.$_FILES['book_form']['name']['image'];
-        $destiation_dir = basename('/public/image/'. $fotoname);
-        move_uploaded_file($_FILES['book_form']['tmp_name']['image'], $destiation_dir );
-
-        $product -> setName($response['book_form']['name']);
-        $product -> setAuthor($response['book_form']['author']);
-        $product -> setTitle($response['book_form']['title']);
-        $product -> setImage($destiation_dir);
-        $product -> setYear($response['book_form']['year']);
-        $entityManager->flush();
+        echo '<pre>'.print_r($_POST,true).'</pre>';
+//        $response = $_POST;
 //
+//        $entityManager = $doctrine->getManager();
+//        $product = $entityManager->getRepository(Books::class)->find($id);
+//
+//
+//        $fotoname = rand(1000,9999). time().'_'.$_FILES['book_form']['name']['image'];
+//        $destiation_dir = basename('/public/image/'. $fotoname);
+//        move_uploaded_file($_FILES['book_form']['tmp_name']['image'], $destiation_dir );
+//
+//        $product -> setName($response['book_form']['name']);
+//        $product -> setAuthor($response['book_form']['author']);
+//        $product -> setTitle($response['book_form']['title']);
+//        $product -> setImage($destiation_dir);
+//        $product -> setYear($response['book_form']['year']);
+//        $entityManager->flush();
+//
+
         return $this-> readData();
+
     }
+
+//    public function deleteData(ManagerRegistry $doctrine) {
+//
+//        $response = $_POST;
+//        $entityManager = $doctrine->getManager();
+//        $product = $entityManager->getRepository(Product::class)->find($id);
+//    }
 
 
     public function formAdd()
