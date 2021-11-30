@@ -37,7 +37,11 @@
         var url = prompt('Введите адрес изображения', 'https://sun9-47.userapi.com/c11145/u17421543/-14/m_0762c474.jpg');
         document.execCommand('delete', false, null);
         document.execCommand('selectAll', false, '.toolbar-img' );
-        document.execCommand('insertImage', false, url);
+        if(url == null) {
+            document.execCommand('undo', false, null);
+        }else{
+            document.execCommand('insertImage', false, url);
+        }
         return false;
     });
 </script>
@@ -64,7 +68,7 @@
                                 <tbody>
                                 {% for arr in array %}
                                 <tr>
-                                    <td contenteditable="true">{{ dump(arr.id)}}</td>
+                                    <td>{{ dump(arr.id)}}</td>
                                     <td contenteditable="true">{{ dump(arr.name)}}</td>
                                     <td contenteditable="true">{{ dump(arr.author)}}</td>
                                     <td contenteditable="true">{{ dump(arr.title)}}</td>
