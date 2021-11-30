@@ -30,9 +30,8 @@
 
 </head>
 <body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link  rel = "stylesheet"  href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" >
-<script  src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" ></script >
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
     $('body').on('click', '.toolbar-img', function(){
         var url = prompt('Введите адрес изображения', 'https://sun9-47.userapi.com/c11145/u17421543/-14/m_0762c474.jpg');
@@ -49,81 +48,81 @@
         return false;
     });
 
-    $(document).ready(function(){
-        $('.editBtn').on('click',function(){
-            //hide edit span
-            $(this).closest("tr").find(".editSpan").hide();
-
-            //show edit input
-            $(this).closest("tr").find(".editInput").show();
-
-            //hide edit button
-            $(this).closest("tr").find(".editBtn").hide();
-
-            //show edit button
-            $(this).closest("tr").find(".saveBtn").show();
-
-        });
-
-        $('.saveBtn').on('click',function(){
-            var trObj = $(this).closest("tr");
-            var ID = $(this).closest("tr").attr('id');
-            var inputData = $(this).closest("tr").find(".editInput").serialize();
-            $.ajax({
-                type:'POST',
-                url:'userAction.php',
-                dataType: "json",
-                data:'action=edit&id='+ID+'&'+inputData,
-                success:function(response){
-                    if(response.status == 'ok'){
-                        trObj.find(".editSpan.fname").text(response.data.first_name);
-                        trObj.find(".editSpan.lname").text(response.data.last_name);
-                        trObj.find(".editSpan.email").text(response.data.email);
-
-                        trObj.find(".editInput.fname").text(response.data.first_name);
-                        trObj.find(".editInput.lname").text(response.data.last_name);
-                        trObj.find(".editInput.email").text(response.data.email);
-
-                        trObj.find(".editInput").hide();
-                        trObj.find(".saveBtn").hide();
-                        trObj.find(".editSpan").show();
-                        trObj.find(".editBtn").show();
-                    }else{
-                        alert(response.msg);
-                    }
-                }
-            });
-        });
-
-        $('.deleteBtn').on('click',function(){
-            //hide delete button
-            $(this).closest("tr").find(".deleteBtn").hide();
-
-            //show confirm button
-            $(this).closest("tr").find(".confirmBtn").show();
-
-        });
-
-        $('.confirmBtn').on('click',function(){
-            var trObj = $(this).closest("tr");
-            var ID = $(this).closest("tr").attr('id');
-            $.ajax({
-                type:'POST',
-                url:'userAction.php',
-                dataType: "json",
-                data:'action=delete&id='+ID,
-                success:function(response){
-                    if(response.status == 'ok'){
-                        trObj.remove();
-                    }else{
-                        trObj.find(".confirmBtn").hide();
-                        trObj.find(".deleteBtn").show();
-                        alert(response.msg);
-                    }
-                }
-            });
-        });
-    });
+    // $(document).ready(function(){
+    //     $('.editBtn').on('click',function(){
+    //         //hide edit span
+    //         $(this).closest("tr").find(".editSpan").hide();
+    //
+    //         //show edit input
+    //         $(this).closest("tr").find(".editInput").show();
+    //
+    //         //hide edit button
+    //         $(this).closest("tr").find(".editBtn").hide();
+    //
+    //         //show edit button
+    //         $(this).closest("tr").find(".saveBtn").show();
+    //
+    //     });
+    //
+    //     $('.saveBtn').on('click',function(){
+    //         var trObj = $(this).closest("tr");
+    //         var ID = $(this).closest("tr").attr('id');
+    //         var inputData = $(this).closest("tr").find(".editInput").serialize();
+    //         $.ajax({
+    //             type:'POST',
+    //             url:'userAction.php',
+    //             dataType: "json",
+    //             data:'action=edit&id='+ID+'&'+inputData,
+    //             success:function(response){
+    //                 if(response.status == 'ok'){
+    //                     trObj.find(".editSpan.fname").text(response.data.first_name);
+    //                     trObj.find(".editSpan.lname").text(response.data.last_name);
+    //                     trObj.find(".editSpan.email").text(response.data.email);
+    //
+    //                     trObj.find(".editInput.fname").text(response.data.first_name);
+    //                     trObj.find(".editInput.lname").text(response.data.last_name);
+    //                     trObj.find(".editInput.email").text(response.data.email);
+    //
+    //                     trObj.find(".editInput").hide();
+    //                     trObj.find(".saveBtn").hide();
+    //                     trObj.find(".editSpan").show();
+    //                     trObj.find(".editBtn").show();
+    //                 }else{
+    //                     alert(response.msg);
+    //                 }
+    //             }
+    //         });
+    //     });
+    //
+    //     $('.deleteBtn').on('click',function(){
+    //         //hide delete button
+    //         $(this).closest("tr").find(".deleteBtn").hide();
+    //
+    //         //show confirm button
+    //         $(this).closest("tr").find(".confirmBtn").show();
+    //
+    //     });
+    //
+    //     $('.confirmBtn').on('click',function(){
+    //         var trObj = $(this).closest("tr");
+    //         var ID = $(this).closest("tr").attr('id');
+    //         $.ajax({
+    //             type:'POST',
+    //             url:'userAction.php',
+    //             dataType: "json",
+    //             data:'action=delete&id='+ID,
+    //             success:function(response){
+    //                 if(response.status == 'ok'){
+    //                     trObj.remove();
+    //                 }else{
+    //                     trObj.find(".confirmBtn").hide();
+    //                     trObj.find(".deleteBtn").show();
+    //                     alert(response.msg);
+    //                 }
+    //             }
+    //         });
+    //     });
+    // });
 </script>
 
 <div class="container" xmlns:max-width="http://www.w3.org/1999/xhtml">
@@ -146,19 +145,13 @@
                                 </thead>
                                 <tbody id="userData">
                                 {% for arr in array %}
-                                <tr id="{{ dump(arr.id)}}">
-                                    <td>{{ dump(arr.id)}}</td>
-                                    <td>
-                                        <span class="editSpan fname">{{ dump(arr.name)}}</span>
-                                        <input class="editInput fname form-control input-sm" type="text" name="name" value="{{ dump(arr.name)}}" style="display: none;">
-                                    </td>
-                                    <td>
-                                        <span class="editSpan fname">{{ dump(arr.author)}}</span>
-                                        <input class="editInput fname form-control input-sm" type="text" name="author" value="{{ dump(arr.author)}}" style="display: none;">
-                                    </td>
-                                    <td>{{ dump(arr.title)}}</td>
-                                    <td contenteditable="true" class="toolbar-img item"><img src="{{ arr.image }}" alt="" width="135" height="135" class="photo"></td>
-                                    <td>{{ dump(arr.year)}}</td>
+                                <tr>
+                                    <td>{{ arr.id}}</td>
+                                    <td contenteditable="true" class="bookname" >{{ arr.name}}</td>
+                                    <td contenteditable="true" class="author" >{{ arr.author}}</td>
+                                    <td contenteditable="true" class="title" >{{ arr.title}}</td>
+                                    <td contenteditable="true" class="toolbar-img"><img src="{{ arr.image }}" alt="" width="135" height="135" class="photo"></td>
+                                    <td contenteditable="true" class="year">{{ arr.year}}</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
