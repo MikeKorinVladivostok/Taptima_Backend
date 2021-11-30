@@ -44,6 +44,13 @@
         }
         return false;
     });
+    function getContent(){
+        document.getElementById("update").value = document.getElementById("bookname").innerHTML;
+        document.getElementById("update").value = document.getElementById("author").innerHTML;
+        document.getElementById("update").value = document.getElementById("title").innerHTML;
+        document.getElementById("update").value = document.getElementById("toolbar-img").innerHTML;
+        document.getElementById("update").value = document.getElementById("year").innerHTML;
+    }
 </script>
 
 <div class="container" xmlns:max-width="http://www.w3.org/1999/xhtml">
@@ -69,11 +76,11 @@
                                 {% for arr in array %}
                                 <tr>
                                     <td>{{ dump(arr.id)}}</td>
-                                    <td contenteditable="true">{{ dump(arr.name)}}</td>
-                                    <td contenteditable="true">{{ dump(arr.author)}}</td>
-                                    <td contenteditable="true">{{ dump(arr.title)}}</td>
+                                    <td contenteditable="true" class="bookname" >{{ dump(arr.name)}}</td>
+                                    <td contenteditable="true" class="author" >{{ dump(arr.author)}}</td>
+                                    <td contenteditable="true" class="title" >{{ dump(arr.title)}}</td>
                                     <td contenteditable="true" class="toolbar-img"><img src="{{ arr.image }}" alt="" width="135" height="135" class="photo"></td>
-                                    <td contenteditable="true">{{ dump(arr.year)}}</td>
+                                    <td contenteditable="true" class="year">{{ dump(arr.year)}}</td>
     <!--                                <td>-->
     <!--                                    <a>-->
     <!--                                        Редактировать-->
