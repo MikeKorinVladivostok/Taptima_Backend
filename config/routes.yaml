@@ -25,3 +25,6 @@ formAutors:
 addAuthors:
   path: /addauthors
   controller: App\Controller\AuthorController::addAuthors
+updateAuthors:
+  path: /updateAuthors
+  controller: App\Controller\AuthorController::updateData
