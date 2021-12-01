@@ -60,17 +60,17 @@
                 data:'action=edit&id='+ID+'&'+inputData,
                 success:function(response){
                     if(response.status == 'ok'){
-                        trObj.find(".editSpan.books").text(response.data.books);
                         trObj.find(".editSpan.autors").text(response.data.autors);
-
-                        trObj.find(".editInput.books").text(response.data.books);
                         trObj.find(".editInput.autors").text(response.data.autors);
-
 
                         trObj.find(".editInput").hide();
                         trObj.find(".saveBtn").hide();
                         trObj.find(".editSpan").show();
                         trObj.find(".editBtn").show();
+
+                        $(this).closest("tr").find(".saveBtn").hide();
+                        $(this).closest("tr").find(".editBtn").show();
+
                     }else{
                         alert(response.msg);
                     }
@@ -140,8 +140,8 @@
                                                    value="{{ author.books}}" style="display: none;">
                                         </td>
                                         <td>
-                                            <span class="editSpan author">{{ author.autors}}</span>
-                                            <input class="editInput author form-control input-sm" type="text" name="autors"
+                                            <span class="editSpan autors">{{ author.autors}}</span>
+                                            <input class="editInput autors form-control input-sm" type="text" name="autors"
                                                    value="{{ author.autors}}" style="display: none;">
                                         </td>
                                         <td>

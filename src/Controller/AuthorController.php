@@ -111,7 +111,8 @@ class AuthorController extends AbstractController
         $product->setAutors($request['autors']);
         $entityManager->flush();
 
-        return new JsonResponse(['status' => 'ok']);
+
+        return new JsonResponse(['status' => 'ok','authors' => $request['autors']]);
     }
 
     public function deleteAuthor() {
