@@ -13,3 +13,15 @@ form:
 updateData:
   path: /update
   controller: App\Controller\BooksController::updateData
+
+readAutors:
+  path: /getauthors
+  controller: App\Controller\AuthorController::readData
+
+formAutors:
+  path: /formautors
+  controller: App\Controller\AuthorController::formAdd
+
+addAuthors:
+  path: /addauthors
+  controller: App\Controller\AuthorController::addAuthors

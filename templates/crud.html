@@ -129,7 +129,7 @@
     });
 </script>
 
-<div class="container" xmlns:max-width="http://www.w3.org/1999/xhtml">
+<div class="container " xmlns:max-width="http://www.w3.org/1999/xhtml">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -167,10 +167,10 @@
                                         <input class="editInput title form-control input-sm" type="text" name="title"
                                                value="{{ arr.title}}" style="display: none;">
                                     </td>
-<!--                                    <td><img src="{{ arr.image }}" alt="" width="135" height="135" class="photo">-->
-<!--                                        <input class="editInput image form-control input-sm" type="file" name="image"-->
-<!--                                               value="{{ arr.image}}" style="display: none;">-->
-<!--                                    </td>-->
+                                    <td><img src="{{ arr.image }}" alt="" width="135" height="135" class="photo">
+                                        <input class="editInput image form-control input-sm" type="file" name="image"
+                                               value="{{ arr.image}}" style="display: none;">
+                                    </td>
                                     <td>
                                         <span class="editSpan year">{{ arr.year}}</span>
                                         <input class="editInput year form-control input-sm" type="text" name="year"
@@ -192,10 +192,14 @@
                     <a href="/form" class="mb-1 btn btn-primary" type="button">
                         Добавить книгу
                     </a>
+                    <a href="/getauthors" class="mb-1 btn btn-primary" type="button">
+                        К авторам
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 </body>
 </html>
