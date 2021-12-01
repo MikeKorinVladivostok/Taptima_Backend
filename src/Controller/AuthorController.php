@@ -7,6 +7,7 @@ use App\Entity\Books;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -98,7 +99,17 @@ class AuthorController extends AbstractController
         return $this->redirect('http://taptima/getauthors');
     }
 
+    public function deleteauthor() {
 
+        $response = $_POST;
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $product = $entityManager->getRepository(Authors::class)->find($response['id']);
+        $entityManager->remove($product);
+        $entityManager->flush();
+
+        return new JsonResponse(['status' => 'ok']);
+    }
 
     public function formAdd()
     {
