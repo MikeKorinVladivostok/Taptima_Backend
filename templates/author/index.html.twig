@@ -129,28 +129,36 @@
                     <div class="toolbar">
                         <table  class="table table-striped table-bordered" id="dataTable">
                             <thead>
-                            <tr>
-                                <th width="5%">id</th>
-                                <th width="5%">Количество книг</th>
-                                <th width="10%">Автор</th>
-                            </tr>
+                                <tr>
+                                    <th width="5%">id</th>
+                                    <th width="5%">Количество книг</th>
+                                    <th width="10%">Автор</th>
+                                </tr>
                             </thead>
                             <tbody id="userData">
-                            {% for author in authors %}
-                                <tr id="{{ author.id}}">
-                                    <td>{{ author.id}}</td>
-                                    <td>{{ author.books}}</td>
-                                    <td>{{ author.autors}}</td>
-                                    <td>
-                                        <div class="btn-group btn-group-sm">
-                                            <button type="button" class="btn btn-sm btn-default editBtn" style="float: none;"><span class="glyphicon glyphicon-pencil"></span></button>
-                                            <button type="button" class="btn btn-sm btn-default deleteBtn" style="float: none;"><span class="glyphicon glyphicon-trash"></span></button>
-                                        </div>
-                                        <button type="button" class="btn btn-sm btn-success saveBtn" style="float: none; display: none;">Save</button>
-                                        <button type="button" class="btn btn-sm btn-danger confirmBtn" style="float: none; display: none;">Confirm</button>
-                                    </td>
-                                </tr>
-                            {% endfor %}
+                                {% for author in authors %}
+                                    <tr id="{{ arr.id}}">
+                                        <td>{{ author.id}}</td>
+                                        <td>
+                                            <span class="editSpan name">{{ author.books}}</span>
+                                            <input class="editInput name form-control input-sm" type="text" name="books"
+                                                   value="{{ author.books}}" style="display: none;">
+                                        </td>
+                                        <td>
+                                            <span class="editSpan author">{{ author.author}}</span>
+                                            <input class="editInput author form-control input-sm" type="text" name="author"
+                                                   value="{{ author.author}}" style="display: none;">
+                                        </td>
+                                        <td>
+                                            <div class="btn-group btn-group-sm">
+                                                <button type="button" class="btn btn-sm btn-default editBtn" style="float: none;"><span class="glyphicon glyphicon-pencil"></span></button>
+                                                <button type="button" class="btn btn-sm btn-default deleteBtn" style="float: none;"><span class="glyphicon glyphicon-trash"></span></button>
+                                            </div>
+                                            <button type="button" class="btn btn-sm btn-success saveBtn" style="float: none; display: none;">Save</button>
+                                            <button type="button" class="btn btn-sm btn-danger confirmBtn" style="float: none; display: none;">Confirm</button>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
