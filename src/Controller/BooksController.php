@@ -88,7 +88,7 @@ class BooksController extends AbstractController
 
     }
 
-    public function deletebook() {
+    public function deleteBook() {
 
         $response = $_POST;
 

@@ -18,13 +18,15 @@ class AuthorController extends AbstractController
      * @param ManagerRegistry $doctrine
      * @return Response
      */
-    public function countBooks()
+
+    public function countBooks() : array
     {
         $count = array();
 
         $authors = $this->getDoctrine()
             ->getRepository(Authors::class)
             ->findAll();
+
         foreach ($authors as $author) {
             $oneAuthor = (string)($author->getAutors());
 
@@ -63,7 +65,7 @@ class AuthorController extends AbstractController
     public function readData()
     {
         $data = $this->countBooks();
-        $update = $this->updateData();
+        $update = $this->updateEventListener();
 
         $product = $this->getDoctrine()
             ->getRepository(Authors::class)
@@ -76,7 +78,7 @@ class AuthorController extends AbstractController
 
     }
 
-    public function updateData() : Response
+    public function updateEventListener() : Response
     {
         $data = $this->countBooks();
 
@@ -99,7 +101,20 @@ class AuthorController extends AbstractController
         return $this->redirect('http://taptima/getauthors');
     }
 
-    public function deleteauthor() {
+    public function updateAuthor()
+    {
+        $request = $_POST;
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $product = $entityManager->getRepository(Authors::class)->find($request['id']);
+
+        $product->setAutors($request['autors']);
+        $entityManager->flush();
+
+        return new JsonResponse(['status' => 'ok']);
+    }
+
+    public function deleteAuthor() {
 
         $response = $_POST;
 

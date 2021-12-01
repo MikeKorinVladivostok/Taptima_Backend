@@ -55,22 +55,17 @@
             var inputData = $(this).closest("tr").find(".editInput").serialize();
             $.ajax({
                 type:'POST',
-                url:'/update',
+                url:'/updateAuthor',
                 dataType: "json",
                 data:'action=edit&id='+ID+'&'+inputData,
                 success:function(response){
                     if(response.status == 'ok'){
-                        trObj.find(".editSpan.name").text(response.data.name);
-                        trObj.find(".editSpan.author").text(response.data.author);
-                        trObj.find(".editSpan.title").text(response.data.title);
-                        trObj.find(".editSpan.year").text(response.data.year);
-                        trObj.find(".toolbar-img").text(response.data.year);
+                        trObj.find(".editSpan.books").text(response.data.books);
+                        trObj.find(".editSpan.autors").text(response.data.autors);
 
-                        trObj.find(".editInput.name").text(response.data.name);
-                        trObj.find(".editInput.author").text(response.data.author);
-                        trObj.find(".editInput.title").text(response.data.title);
-                        trObj.find(".editInput.image").text(response.data.image);
-                        trObj.find(".editInput.year").text(response.data.year);
+                        trObj.find(".editInput.books").text(response.data.books);
+                        trObj.find(".editInput.autors").text(response.data.autors);
+
 
                         trObj.find(".editInput").hide();
                         trObj.find(".saveBtn").hide();
@@ -137,17 +132,17 @@
                             </thead>
                             <tbody id="userData">
                                 {% for author in authors %}
-                                    <tr id="{{ arr.id}}">
+                                    <tr id="{{ author.id}}">
                                         <td>{{ author.id}}</td>
                                         <td>
-                                            <span class="editSpan name">{{ author.books}}</span>
-                                            <input class="editInput name form-control input-sm" type="text" name="books"
+                                            <span class="test">{{ author.books}}</span>
+                                            <input class="input-sm" type="text" name="books"
                                                    value="{{ author.books}}" style="display: none;">
                                         </td>
                                         <td>
-                                            <span class="editSpan author">{{ author.author}}</span>
-                                            <input class="editInput author form-control input-sm" type="text" name="author"
-                                                   value="{{ author.author}}" style="display: none;">
+                                            <span class="editSpan author">{{ author.autors}}</span>
+                                            <input class="editInput author form-control input-sm" type="text" name="autors"
+                                                   value="{{ author.autors}}" style="display: none;">
                                         </td>
                                         <td>
                                             <div class="btn-group btn-group-sm">
