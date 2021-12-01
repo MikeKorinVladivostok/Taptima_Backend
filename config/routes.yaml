@@ -14,6 +14,10 @@ updateData:
   path: /update
   controller: App\Controller\BooksController::updateData
 
+deleteBook:
+  path: /deletebook
+  controller: App\Controller\BooksController::deletebook
+
 readAutors:
   path: /getauthors
   controller: App\Controller\AuthorController::readData
@@ -25,6 +29,10 @@ formAutors:
 addAuthors:
   path: /addauthors
   controller: App\Controller\AuthorController::addAuthors
+
 updateAuthors:
   path: /updateAuthors
   controller: App\Controller\AuthorController::updateData
+deleteAuthors:
+  path: /deleteauthor
+  controller: App\Controller\AuthorController::deleteauthor

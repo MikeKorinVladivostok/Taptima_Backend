@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Authors;
 use App\Entity\Books;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +17,7 @@ class AuthorController extends AbstractController
      * @param ManagerRegistry $doctrine
      * @return Response
      */
-    public function countBooks() : array
+    public function countBooks()
     {
         $count = array();
 
@@ -90,11 +91,14 @@ class AuthorController extends AbstractController
 
             $product->setBooks($data[$count]);
             $entityManager->flush();
+
             $count++;
         }
 
         return $this->redirect('http://taptima/getauthors');
     }
+
+
 
     public function formAdd()
     {

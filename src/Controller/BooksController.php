@@ -6,6 +6,7 @@ use App\Entity\Books;
 use Doctrine\Persistence\ManagerRegistry;
 use phpDocumentor\Reflection\Types\Void_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
@@ -49,6 +50,10 @@ class BooksController extends AbstractController
             ->getRepository(Books::class)
             ->findAll();
 
+        foreach ($product as $prod) {
+            $author[] = $prod -> getAuthor();
+        }
+
         return $this->render('crud.html', array(
             'array' => $product,
         ));
@@ -83,12 +88,17 @@ class BooksController extends AbstractController
 
     }
 
-//    public function deleteData(ManagerRegistry $doctrine) {
-//
-//        $response = $_POST;
-//        $entityManager = $doctrine->getManager();
-//        $product = $entityManager->getRepository(Product::class)->find($id);
-//    }
+    public function deletebook() {
+
+        $response = $_POST;
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $product = $entityManager->getRepository(Books::class)->find($response['id']);
+        $entityManager->remove($product);
+        $entityManager->flush();
+
+        return new JsonResponse(['status' => 'ok']);
+    }
 
 
     public function formAdd()

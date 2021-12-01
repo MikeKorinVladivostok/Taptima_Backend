@@ -34,6 +34,39 @@
 
 </head>
 <body>
+
+<script>
+    $('.deleteBtn').on('click',function(){
+        //hide delete button
+        $(this).closest("tr").find(".deleteBtn").hide();
+
+        //show confirm button
+        $(this).closest("tr").find(".confirmBtn").show();
+
+    });
+
+    $('.confirmBtn').on('click',function(){
+        var trObj = $(this).closest("tr");
+        var ID = $(this).closest("tr").attr('id');
+        $.ajax({
+            type:'POST',
+            url:'/deleteauthor',
+            dataType: "json",
+            data:'action=delete&id='+ID,
+            success:function(response){
+                if(response.status == 'ok'){
+                    trObj.remove();
+                }else{
+                    trObj.find(".confirmBtn").hide();
+                    trObj.find(".deleteBtn").show();
+                    alert(response.msg);
+                }
+            }
+        });
+    });
+    });
+</script>
+</script>
 <link  rel = "stylesheet"  href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" >
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style>

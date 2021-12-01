@@ -112,7 +112,7 @@
             var ID = $(this).closest("tr").attr('id');
             $.ajax({
                 type:'POST',
-                url:'/update',
+                url:'/deletebook',
                 dataType: "json",
                 data:'action=delete&id='+ID,
                 success:function(response){
