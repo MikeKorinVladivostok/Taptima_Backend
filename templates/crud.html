@@ -79,12 +79,12 @@
                         trObj.find(".editSpan.author").text(response.data.author);
                         trObj.find(".editSpan.title").text(response.data.title);
                         trObj.find(".editSpan.year").text(response.data.year);
-                        trObj.find(".toolbar-img").text(response.data.year);
+                        // trObj.find("img").text(response.data.year);
 
                         trObj.find(".editInput.name").text(response.data.name);
                         trObj.find(".editInput.author").text(response.data.author);
                         trObj.find(".editInput.title").text(response.data.title);
-                        trObj.find(".editInput.image").text(response.data.image);
+                        // trObj.find(".editInput.image").text(response.data.image);
                         trObj.find(".editInput.year").text(response.data.year);
 
                         trObj.find(".editInput").hide();
@@ -168,7 +168,7 @@
                                                value="{{ arr.title}}" style="display: none;">
                                     </td>
                                     <td><img src="{{ arr.image }}" alt="" width="135" height="135" class="photo">
-                                        <input class="editInput image form-control input-sm" type="file" name="image"
+                                        <input type="file" id="js-file" class="editInput image form-control input-sm" name="image"
                                                value="{{ arr.image}}" style="display: none;">
                                     </td>
                                     <td>

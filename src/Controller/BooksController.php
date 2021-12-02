@@ -61,13 +61,38 @@ class BooksController extends AbstractController
     }
 
 
-    public function updateData(ManagerRegistry $doctrine  ) :  Response
+    public function updateData() :  Response
     {
-//        $session = new Session();
-//        $session->start();
-        echo '<pre>'.print_r($_POST,true).'</pre>';
-//        $response = $_POST;
-//
+        $request = $_POST;
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $product = $entityManager->getRepository(Books::class)->find($request['id']);
+
+//        $fotoname = rand(1000,9999). time().'_'.$_FILES['book_form']['name']['image'];
+//        $destiation_dir = basename('/public/image/'. $fotoname);
+//        move_uploaded_file($_FILES['book_form']['tmp_name']['image'], $destiation_dir );
+
+        $product -> setName($request['name']);
+        $product -> setAuthor($request['author']);
+        $product -> setTitle($request['title']);
+//        $product -> setImage($destiation_dir);
+        $product -> setImage("image");
+        $product -> setYear($request['year']);
+        $entityManager->flush();
+
+
+
+
+        return new JsonResponse(['status' => 'ok','data' => $request]);
+
+
+
+
+
+
+//        echo '<pre>'.print_r($_POST,true).'</pre>';
+//        echo '<pre>'.print_r($_FILES,true).'</pre>';
+
 //        $entityManager = $doctrine->getManager();
 //        $product = $entityManager->getRepository(Books::class)->find($id);
 //
@@ -84,7 +109,7 @@ class BooksController extends AbstractController
 //        $entityManager->flush();
 //
 
-        return $this-> readData();
+//        return $this-> readData();
 
     }
 

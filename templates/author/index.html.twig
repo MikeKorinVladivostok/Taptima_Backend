@@ -60,7 +60,6 @@
                 data:'action=edit&id='+ID+'&'+inputData,
                 success:function(response){
                     if(response.status === "ok"){
-                        console.log(response)
                         trObj.find(".editInput.autors").text(response.authors);
                         trObj.find(".editSpan.autors").text(response.authors);
 
