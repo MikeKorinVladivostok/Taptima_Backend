@@ -71,7 +71,6 @@ class AuthorController extends AbstractController
             ->getRepository(Authors::class)
             ->findAll();
 
-
         return $this->render('author/index.html.twig', array(
             'authors' => $product,
         ));

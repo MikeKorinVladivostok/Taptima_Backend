@@ -59,17 +59,19 @@
                 dataType: "json",
                 data:'action=edit&id='+ID+'&'+inputData,
                 success:function(response){
-                    if(response.status == 'ok'){
-                        trObj.find(".editSpan.autors").text(response.data.autors);
-                        trObj.find(".editInput.autors").text(response.data.autors);
+                    if(response.status === "ok"){
+                        trObj.find(".editInput.autors").text(response.authors);
+                        trObj.find(".editSpan.autors").text(response.authors);
+
+                        trObj.find(".books").text(response.books);
 
                         trObj.find(".editInput").hide();
                         trObj.find(".saveBtn").hide();
                         trObj.find(".editSpan").show();
                         trObj.find(".editBtn").show();
 
-                        $(this).closest("tr").find(".saveBtn").hide();
-                        $(this).closest("tr").find(".editBtn").show();
+                        // $(this).closest("tr").find(".saveBtn").hide();
+                        // $(this).closest("tr").find(".editBtn").show();
 
                     }else{
                         alert(response.msg);
@@ -96,7 +98,7 @@
                 dataType: "json",
                 data:'action=delete&id='+ID,
                 success:function(response){
-                    if(response.status == 'ok'){
+                    if(response.status === 'ok'){
                         trObj.remove();
                     }else{
                         trObj.find(".confirmBtn").hide();
@@ -135,8 +137,8 @@
                                     <tr id="{{ author.id}}">
                                         <td>{{ author.id}}</td>
                                         <td>
-                                            <span class="test">{{ author.books}}</span>
-                                            <input class="input-sm" type="text" name="books"
+                                            <span class="books">{{ author.books}}</span>
+                                            <input class="books input" type="text" name="books"
                                                    value="{{ author.books}}" style="display: none;">
                                         </td>
                                         <td>
