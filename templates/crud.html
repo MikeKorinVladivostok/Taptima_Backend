@@ -5,32 +5,86 @@
     <title>Title</title>
     <title>width: 100%</title>
     <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        th,
-        td {
-            border: 1px solid black;
-            padding: 15px;
-        }
-        a {
-            background-color: brown;
-            color: white;
-            padding: 1em 1.5em;
-            text-decoration: none;
-            text-transform: uppercase;
+        .btn {
             display: inline-block;
-            margin-top: 10px;
+            box-sizing: border-box;
+            padding: 0 25px;
+            margin: 0 15px 15px 0;
+            outline: none;
+            border: 1px solid #fff;
+            border-radius: 50px;
+            height: 36px;
+            line-height: 36px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            color: #444;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgb(65 132 144 / 10%), 0 1px 3px rgb(0 0 0 / 8%);
+            cursor: pointer;
+            user-select: none;
+            appearance: none;
+            touch-action: manipulation;
+            vertical-align: top;
+            transition: box-shadow 0.2s;
         }
-        th {
-            background: brown;
+        .btn:focus-visible {
+            border: 1px solid #4c51f9;
+            outline: none;
+        }
+        .btn:hover {
+            transition: all 0.2s;
+            box-shadow: 0 7px 14px rgb(65 132 144 / 10%), 0 3px 6px rgb(0 0 0 / 8%);
+        }
+        .btn:active {
+            background-color: #808080;
+        }
+        .btn:disabled {
+            background-color: #eee;
+            border-color: #eee;
+            color: #444;
+            cursor: not-allowed;
+        }
+        .table {
+            width: 100%;
+            border: none;
+            margin-bottom: 20px;
+        }
+        .table thead th {
+            font-weight: bold;
+            text-align: left;
+            border: none;
+            padding: 10px 15px;
+            background: #d8d8d8;
+            font-size: 14px;
+        }
+        .table thead tr th:first-child {
+            border-radius: 8px 0 0 8px;
+        }
+        .table thead tr th:last-child {
+            border-radius: 0 8px 8px 0;
+        }
+        .table tbody td {
+            text-align: left;
+            border: none;
+            padding: 10px 15px;
+            font-size: 14px;
+            vertical-align: top;
+        }
+        .table tbody tr:nth-child(even){
+            background: #f3f3f3;
+        }
+        .table tbody tr td:first-child {
+            border-radius: 8px 0 0 8px;
+        }
+        .table tbody tr td:last-child {
+            border-radius: 0 8px 8px 0;
         }
     </style>
 
 </head>
 <body>
-<link  rel = "stylesheet"  href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" >
+<!--<link  rel = "stylesheet"  href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" >-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
     $('body').on('click', '.toolbar-img', function(){
@@ -44,6 +98,8 @@
         }else{
             document.execCommand('insertImage', false, url);
         }
+
+
 
         return false;
     });
@@ -62,19 +118,26 @@
             //show edit button
             $(this).closest("tr").find(".saveBtn").show();
 
+            $('.imgme').toggleClass('toolbar-img');
+            $('.imgme').attr("contenteditable", true);
         });
 
         $('.saveBtn').on('click',function(){
-            var trObj = $(this).closest("tr");
-            var ID = $(this).closest("tr").attr('id');
-            var inputData = $(this).closest("tr").find(".editInput").serialize();
+            let trObj = $(this).closest("tr");
+            let ID = $(this).closest("tr").attr('id');
+            let inputData = $(this).closest("tr").find(".editInput").serialize();
+
+            $('.imgme').attr("contenteditable", false);
+            // let data = new FormData();
+            // data.append('input_file_name', $('#js-file').prop('files'));
             $.ajax({
                 type:'POST',
                 url:'/update',
                 dataType: "json",
                 data:'action=edit&id='+ID+'&'+inputData,
                 success:function(response){
-                    if(response.status == 'ok'){
+
+                    if(response.status === 'ok'){
                         trObj.find(".editSpan.name").text(response.data.name);
                         trObj.find(".editSpan.author").text(response.data.author);
                         trObj.find(".editSpan.title").text(response.data.title);
@@ -106,15 +169,15 @@
         });
 
         $('.confirmBtn').on('click',function(){
-            var trObj = $(this).closest("tr");
-            var ID = $(this).closest("tr").attr('id');
+            let trObj = $(this).closest("tr");
+            let ID = $(this).closest("tr").attr('id');
             $.ajax({
                 type:'POST',
                 url:'/deletebook',
                 dataType: "json",
                 data:'action=delete&id='+ID,
                 success:function(response){
-                    if(response.status == 'ok'){
+                    if(response.status === 'ok'){
                         trObj.remove();
                     }else{
                         trObj.find(".confirmBtn").hide();
@@ -137,19 +200,20 @@
                         <table  class="table table-striped table-bordered" id="dataTable">
                             <thead>
                                 <tr>
-                                    <th width="5%">id</th>
+<!--                                    <th width="5%">id</th>-->
                                     <th width="5%">Название</th>
                                     <th width="10%">Автор</th>
                                     <th width="10%">Описание</th>
                                     <th width="30%">Обложка</th>
-                                    <th width="15%">Год публикации</th>
+                                    <th width="15%" class="year" >
+                                    Год публикации</th>
                                     <th width="15%">Действия</th>
                                 </tr>
                                 </thead>
                                 <tbody id="userData">
                                 {% for arr in array %}
                                 <tr id="{{ arr.id}}">
-                                    <td>{{ arr.id}}</td>
+<!--                                    <td>{{ arr.id}}</td>-->
                                     <td>
                                         <span class="editSpan name">{{ arr.name}}</span>
                                         <input class="editInput name form-control input-sm" type="text" name="name"
@@ -165,22 +229,24 @@
                                         <input class="editInput title form-control input-sm" type="text" name="title"
                                                value="{{ arr.title}}" style="display: none;">
                                     </td>
-                                    <td><img src="{{arr.image}}" alt="" width="135" height="135" class="photo">
-                                        <input type="file" id="js-file" class="editInput image form-control input-sm" name="image"
-                                               value="{{arr.image}}" style="display: none;">
+                                    <td contenteditable="false" class="imgme"><img src="{{arr.image}}" alt="" width="135" height="135" class="photo">
+<!--                                        <input type="file" id="js-file" class="editInput image form-control input-sm" name="image"-->
+<!--                                               value="" style="display: none;">-->
                                     </td>
                                     <td>
                                         <span class="editSpan year">{{ arr.year}}</span>
-                                        <input class="editInput year form-control input-sm" type="text" name="year"
-                                               value="{{ arr.year}}" style="display: none;">
+                                        <label>
+                                            <input class="editInput year form-control input-sm" type="text" name="year"
+                                                   value="{{ arr.year}}" style="display: none;">
+                                        </label>
                                     </td>
                                     <td>
                                         <div class="btn-group btn-group-sm">
-                                            <button type="button" class="btn btn-sm btn-default editBtn" style="float: none;"><span class="glyphicon glyphicon-pencil"></span></button>
-                                            <button type="button" class="btn btn-sm btn-default deleteBtn" style="float: none;"><span class="glyphicon glyphicon-trash"></span></button>
+                                            <button type="button" class="btn btn-sm btn-default editBtn" style="float: none;"><span class="glyphicon glyphicon-pencil">Редактировать</span></button>
+                                            <button type="button" class="btn btn-sm btn-default deleteBtn" style="float: none;"><span class="glyphicon glyphicon-trash">Удалить</span></button>
                                         </div>
-                                        <button type="button" class="btn btn-sm btn-success saveBtn" style="float: none; display: none;">Save</button>
-                                        <button type="button" class="btn btn-sm btn-danger confirmBtn" style="float: none; display: none;">Confirm</button>
+                                        <button type="button" class="btn btn-sm btn-success saveBtn" style="float: none; display: none;">Сохранить</button>
+                                        <button type="button" class="btn btn-sm btn-danger confirmBtn" style="float: none; display: none;">Применить</button>
                                     </td>
                                 </tr>
                                 {% endfor %}

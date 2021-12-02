@@ -46,6 +46,8 @@ class BooksController extends AbstractController
 
     public function readData()
     {
+        $get = $_GET;
+
         $product = $this->getDoctrine()
             ->getRepository(Books::class)
             ->findAll();
@@ -64,6 +66,7 @@ class BooksController extends AbstractController
     public function updateData() :  Response
     {
         $request = $_POST;
+        $file = $_FILES;
 
         $entityManager = $this->getDoctrine()->getManager();
         $product = $entityManager->getRepository(Books::class)->find($request['id']);
@@ -79,7 +82,7 @@ class BooksController extends AbstractController
         $product -> setYear($request['year']);
         $entityManager->flush();
 
-        return new JsonResponse(['status' => 'ok','data' => $request]);
+        return new JsonResponse(['status' => 'ok','data' => $request, 'file' => $file]);
     }
 
     public function deleteBook() {

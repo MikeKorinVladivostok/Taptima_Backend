@@ -5,34 +5,88 @@
     <title>Title</title>
     <title>width: 100%</title>
     <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        th,
-        td {
-            border: 1px solid black;
-            padding: 15px;
-        }
-        a {
-            background-color: brown;
-            color: white;
-            padding: 1em 1.5em;
-            text-decoration: none;
-            text-transform: uppercase;
+        .btn {
             display: inline-block;
-            margin-top: 10px;
+            box-sizing: border-box;
+            padding: 0 25px;
+            margin: 0 15px 15px 0;
+            outline: none;
+            border: 1px solid #fff;
+            border-radius: 50px;
+            height: 36px;
+            line-height: 36px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            color: #444;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgb(65 132 144 / 10%), 0 1px 3px rgb(0 0 0 / 8%);
+            cursor: pointer;
+            user-select: none;
+            appearance: none;
+            touch-action: manipulation;
+            vertical-align: top;
+            transition: box-shadow 0.2s;
         }
-        th {
-            background: brown;
+        .btn:focus-visible {
+            border: 1px solid #4c51f9;
+            outline: none;
+        }
+        .btn:hover {
+            transition: all 0.2s;
+            box-shadow: 0 7px 14px rgb(65 132 144 / 10%), 0 3px 6px rgb(0 0 0 / 8%);
+        }
+        .btn:active {
+            background-color: #808080;
+        }
+        .btn:disabled {
+            background-color: #eee;
+            border-color: #eee;
+            color: #444;
+            cursor: not-allowed;
+        }
+        .table {
+            width: 100%;
+            border: none;
+            margin-bottom: 20px;
+        }
+        .table thead th {
+            font-weight: bold;
+            text-align: left;
+            border: none;
+            padding: 10px 15px;
+            background: #d8d8d8;
+            font-size: 14px;
+        }
+        .table thead tr th:first-child {
+            border-radius: 8px 0 0 8px;
+        }
+        .table thead tr th:last-child {
+            border-radius: 0 8px 8px 0;
+        }
+        .table tbody td {
+            text-align: left;
+            border: none;
+            padding: 10px 15px;
+            font-size: 14px;
+            vertical-align: top;
+        }
+        .table tbody tr:nth-child(even){
+            background: #f3f3f3;
+        }
+        .table tbody tr td:first-child {
+            border-radius: 8px 0 0 8px;
+        }
+        .table tbody tr td:last-child {
+            border-radius: 0 8px 8px 0;
         }
     </style>
-<link  rel = "stylesheet"  href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" >
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 
 <script>
+
     $(document).ready(function(){
         $('.editBtn').on('click',function(){
             //hide edit span
@@ -50,9 +104,9 @@
         });
 
         $('.saveBtn').on('click',function(){
-            var trObj = $(this).closest("tr");
-            var ID = $(this).closest("tr").attr('id');
-            var inputData = $(this).closest("tr").find(".editInput").serialize();
+            let trObj = $(this).closest("tr");
+            let ID = $(this).closest("tr").attr('id');
+            let inputData = $(this).closest("tr").find(".editInput").serialize();
             $.ajax({
                 type:'POST',
                 url:'/updateAuthor',
@@ -60,17 +114,18 @@
                 data:'action=edit&id='+ID+'&'+inputData,
                 success:function(response){
                     if(response.status === "ok"){
-                        trObj.find(".editInput.autors").text(response.authors);
-                        trObj.find(".editSpan.autors").text(response.authors);
-
-                        $('.books').each(function(index){
-                            trObj.find('.books').text(response.books[index]);
-                        });
-
-                        trObj.find(".editInput").hide();
-                        trObj.find(".saveBtn").hide();
-                        trObj.find(".editSpan").show();
-                        trObj.find(".editBtn").show();
+                        // trObj.find(".editInput.autors").text(response.authors);
+                        // trObj.find(".editSpan.autors").text(response.authors);
+                        //
+                        // $('.books').each(function(index){
+                        //     trObj.find('.books').text(response.books[index]);
+                        // });
+                        //
+                        // trObj.find(".editInput").hide();
+                        // trObj.find(".saveBtn").hide();
+                        // trObj.find(".editSpan").show();
+                        // trObj.find(".editBtn").show();
+                        location.reload()
 
                     }else{
                         alert(response.msg);
@@ -86,8 +141,8 @@
         });
 
         $('.confirmBtn').on('click',function(){
-            var trObj = $(this).closest("tr");
-            var ID = $(this).closest("tr").attr('id');
+            let trObj = $(this).closest("tr");
+            let ID = $(this).closest("tr").attr('id');
             $.ajax({
                 type:'POST',
                 url:'/deleteauthor',
@@ -107,12 +162,8 @@
     });
 </script>
 
-<link  rel = "stylesheet"  href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" >
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+
     <div class="container " xmlns:max-width="http://www.w3.org/1999/xhtml">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -126,6 +177,7 @@
                                     <th width="5%">id</th>
                                     <th width="5%">Количество книг</th>
                                     <th width="10%">Автор</th>
+                                    <th width="10%">Редактирование</th>
                                 </tr>
                             </thead>
                             <tbody id="userData">
@@ -144,11 +196,11 @@
                                         </td>
                                         <td>
                                             <div class="btn-group btn-group-sm">
-                                                <button type="button" class="btn btn-sm btn-default editBtn" style="float: none;"><span class="glyphicon glyphicon-pencil"></span></button>
-                                                <button type="button" class="btn btn-sm btn-default deleteBtn" style="float: none;"><span class="glyphicon glyphicon-trash"></span></button>
+                                                <button type="button" class="btn btn-sm btn-default editBtn" style="float: none;"><span class="glyphicon glyphicon-pencil">Редактировать</span></button>
+                                                <button type="button" class="btn btn-sm btn-default deleteBtn" style="float: none;"><span class="glyphicon glyphicon-trash">Удалить</span></button>
                                             </div>
-                                            <button type="button" class="btn btn-sm btn-success saveBtn" style="float: none; display: none;">Save</button>
-                                            <button type="button" class="btn btn-sm btn-danger confirmBtn" style="float: none; display: none;">Confirm</button>
+                                            <button type="button" class="btn btn-sm btn-success saveBtn" style="float: none; display: none;">Сохранить</button>
+                                            <button type="button" class="btn btn-sm btn-danger confirmBtn" style="float: none; display: none;">Применить</button>
                                         </td>
                                     </tr>
                                 {% endfor %}
