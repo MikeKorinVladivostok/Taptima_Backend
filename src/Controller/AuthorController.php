@@ -109,9 +109,10 @@ class AuthorController extends AbstractController
 
         $product->setAutors($request['autors']);
         $entityManager->flush();
+        $books = $this->countBooks();
 
 
-        return new JsonResponse(['status' => 'ok','authors' => $request['autors']]);
+        return new JsonResponse(['status' => 'ok','authors' => $request['autors'], 'books' => $books]);
     }
 
     public function deleteAuthor() {
