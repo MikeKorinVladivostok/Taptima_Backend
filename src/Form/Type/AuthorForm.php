@@ -1,7 +1,7 @@
 <?php
 
 
-use App\Entity\Book;
+use App\Entity\Authors;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -20,7 +20,7 @@ class AuthorForm extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Book::class,
+            'data_class' => Authors::class,
         ]);
     }
 }

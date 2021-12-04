@@ -114,18 +114,18 @@
                 data:'action=edit&id='+ID+'&'+inputData,
                 success:function(response){
                     if(response.status === "ok"){
-                        // trObj.find(".editInput.autors").text(response.authors);
-                        // trObj.find(".editSpan.autors").text(response.authors);
-                        //
-                        // $('.books').each(function(index){
-                        //     trObj.find('.books').text(response.books[index]);
-                        // });
-                        //
-                        // trObj.find(".editInput").hide();
-                        // trObj.find(".saveBtn").hide();
-                        // trObj.find(".editSpan").show();
-                        // trObj.find(".editBtn").show();
-                        location.reload()
+                        trObj.find(".editInput.autors").text(response.authors);
+                        trObj.find(".editSpan.autors").text(response.authors);
+
+                        $('.books').each(function(index){
+                            trObj.find('.books').text(response.books[index]);
+                        });
+
+                        trObj.find(".editInput").hide();
+                        trObj.find(".saveBtn").hide();
+                        trObj.find(".editSpan").show();
+                        trObj.find(".editBtn").show();
+                        // location.reload()
 
                     }else{
                         alert(response.msg);

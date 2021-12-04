@@ -28,7 +28,7 @@ class AuthorController extends AbstractController
             ->findAll();
 
         foreach ($authors as $author) {
-            $oneAuthor = (string)($author->getAutors());
+            $oneAuthor = (string)($author->getId());
 
             $product = $this->getDoctrine()
                 ->getRepository(Books::class)

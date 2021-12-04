@@ -99,15 +99,13 @@
             document.execCommand('insertImage', false, url);
         }
 
-
-
         return false;
     });
 
     $(document).ready(function(){
         $('.editBtn').on('click',function(){
             //hide edit span
-            $(this).closest("tr").find(".editSpan").hide();
+            $(this).closest("tr").find(".editSpan:not('.photo')").hide();
 
             //show edit input
             $(this).closest("tr").find(".editInput").show();
@@ -118,35 +116,50 @@
             //show edit button
             $(this).closest("tr").find(".saveBtn").show();
 
-            $('.imgme').toggleClass('toolbar-img');
-            $('.imgme').attr("contenteditable", true);
         });
+
+
 
         $('.saveBtn').on('click',function(){
             let trObj = $(this).closest("tr");
             let ID = $(this).closest("tr").attr('id');
-            let inputData = $(this).closest("tr").find(".editInput").serialize();
+            let inputData = $(this).closest("tr").find(".editInput");
+            let files = this.files;
 
-            $('.imgme').attr("contenteditable", false);
-            // let data = new FormData();
-            // data.append('input_file_name', $('#js-file').prop('files'));
+            let data = new FormData();
+            data.append('input_file_name', $(this).closest("tr").find('input[type=file]')[0].files[0]);
+            data.append('title', $(this).closest("tr").find('input[name=title]').val());
+            data.append('name', $(this).closest("tr").find('input[name=name]').val());
+            data.append('author', $(this).closest("tr").find('select[name=author]').val());
+            data.append('year', $(this).closest("tr").find('input[name=year]').val());
+            data.append('id', ID);
+
             $.ajax({
                 type:'POST',
                 url:'/update',
                 dataType: "json",
-                data:'action=edit&id='+ID+'&'+inputData,
+                data: data,
+                cache: false,
+                //data:'action=edit&id='+ID+'&'+inputData,
+                processData: false,
+                contentType: false,
                 success:function(response){
-
+                    console.log(response);
                     if(response.status === 'ok'){
                         trObj.find(".editSpan.name").text(response.data.name);
                         trObj.find(".editSpan.author").text(response.data.author);
                         trObj.find(".editSpan.title").text(response.data.title);
                         trObj.find(".editSpan.year").text(response.data.year);
 
+                        trObj.find(".editSpan.image").attr('src', response.data.image_path);
+
                         trObj.find(".editInput.name").text(response.data.name);
-                        trObj.find(".editInput.author").text(response.data.author);
+                        //trObj.find(".editInput.author").val(response.data.author).change();
+                        trObj.find(".editInput.author option[value=" + response.data.author + "]").attr('selected', 'selected');
                         trObj.find(".editInput.title").text(response.data.title);
                         trObj.find(".editInput.year").text(response.data.year);
+
+
 
                         trObj.find(".editInput").hide();
                         trObj.find(".saveBtn").hide();
@@ -155,6 +168,9 @@
                     }else{
                         alert(response.msg);
                     }
+                },
+                error: function (error) {
+                    console.log(error);
                 }
             });
         });
@@ -220,18 +236,22 @@
                                                value="{{ arr.name}}" style="display: none;">
                                     </td>
                                     <td>
-                                        <span class="editSpan author">{{ arr.author}}</span>
-                                        <input class="editInput author form-control input-sm" type="text" name="author"
-                                               value="{{ arr.author}}" style="display: none;">
+                                        <span class="editSpan author">{{ arr.author_name}}</span>
+                                        <select class="editInput author form-control input-sm" type="text" name="author"
+                                                style="display: none;">
+                                            {% for author in authors %}
+                                                <option {{ author.id == arr.author ? 'selected' : NULL}} value="{{ author.id}}">{{author.autors}}</option>
+                                            {% endfor %}
+                                        </select>
                                     </td>
                                     <td>
                                         <span class="editSpan title">{{ arr.title}}</span>
                                         <input class="editInput title form-control input-sm" type="text" name="title"
                                                value="{{ arr.title}}" style="display: none;">
                                     </td>
-                                    <td contenteditable="false" class="imgme"><img src="{{arr.image}}" alt="" width="135" height="135" class="photo">
-<!--                                        <input type="file" id="js-file" class="editInput image form-control input-sm" name="image"-->
-<!--                                               value="" style="display: none;">-->
+                                    <td><img src="{{arr.image}}" alt="" width="135" height="135" class="photo editSpan image">
+                                        <input type="file" id="js-file" multiple="multiple" class="editInput image form-control input-sm" name="image"
+                                               value="" style="display: none;">
                                     </td>
                                     <td>
                                         <span class="editSpan year">{{ arr.year}}</span>
