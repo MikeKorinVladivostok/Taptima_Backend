@@ -197,7 +197,7 @@ class __TwigTemplate_f45c409438ef7ba480aefd4b530ad1f2c063db69239bf49d0d4367b438b
 
                         trObj.find(\".editInput.name\").text(response.data.name);
                         //trObj.find(\".editInput.author\").val(response.data.author).change();
-                        trObj.find(\".editInput.author option[value=\" + response.data.author + \"]\").attr('selected', 'selected');
+                        trObj.find(\".editInput.author option[value='\" + response.data.author + \"']\").attr('selected', 'selected');
                         trObj.find(\".editInput.title\").text(response.data.title);
                         trObj.find(\".editInput.year\").text(response.data.year);
 
@@ -566,7 +566,7 @@ class __TwigTemplate_f45c409438ef7ba480aefd4b530ad1f2c063db69239bf49d0d4367b438b
 
                         trObj.find(\".editInput.name\").text(response.data.name);
                         //trObj.find(\".editInput.author\").val(response.data.author).change();
-                        trObj.find(\".editInput.author option[value=\" + response.data.author + \"]\").attr('selected', 'selected');
+                        trObj.find(\".editInput.author option[value='\" + response.data.author + \"']\").attr('selected', 'selected');
                         trObj.find(\".editInput.title\").text(response.data.title);
                         trObj.find(\".editInput.year\").text(response.data.year);
 

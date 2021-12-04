@@ -155,7 +155,7 @@
 
                         trObj.find(".editInput.name").text(response.data.name);
                         //trObj.find(".editInput.author").val(response.data.author).change();
-                        trObj.find(".editInput.author option[value=" + response.data.author + "]").attr('selected', 'selected');
+                        trObj.find(".editInput.author option[value='" + response.data.author + "']").attr('selected', 'selected');
                         trObj.find(".editInput.title").text(response.data.title);
                         trObj.find(".editInput.year").text(response.data.year);
 

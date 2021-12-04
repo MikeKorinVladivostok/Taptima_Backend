@@ -26,6 +26,5 @@ return [
     'addAuthors' => [[], ['_controller' => 'App\\Controller\\AuthorController::addAuthors'], [], [['text', '/addauthors']], [], []],
     'updateEventListener' => [[], ['_controller' => 'App\\Controller\\AuthorController::updateEventListener'], [], [['text', '/updateevent']], [], []],
     'deleteAuthors' => [[], ['_controller' => 'App\\Controller\\AuthorController::deleteAuthor'], [], [['text', '/deleteauthor']], [], []],
-    'updateDataAuthor' => [[], ['_controller' => 'App\\Controller\\AuthorController::'], [], [['text', '/updateAuthor']], [], []],
-    'action' => [[], ['_controller' => 'App\\Controller\\TestController::action'], [], [['text', '/action']], [], []],
+    'updateDataAuthor' => [[], ['_controller' => 'App\\Controller\\AuthorController::updateAuthor'], [], [['text', '/updateAuthor']], [], []],
 ];
