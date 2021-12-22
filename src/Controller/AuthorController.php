@@ -4,20 +4,26 @@ namespace App\Controller;
 
 use App\Entity\Authors;
 use App\Entity\Books;
+use App\Events\BookEvent;
+use App\Events\Events;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Twig\Environment;
 
 class AuthorController extends AbstractController
 {
     /**
      * @Route("/author", name="author")
-     * @param ManagerRegistry $doctrine
-     * @return Response
+     * @param Environment $twig
+     * @param EventDispatcherInterface $eventDispatcher
+     * @return void
      */
+
 
     public function countBooks() : array
     {

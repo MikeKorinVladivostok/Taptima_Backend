@@ -19,7 +19,6 @@ return [
     'WriteBook' => [[], ['_controller' => 'App\\Controller\\BooksController::writeData'], [], [['text', '/add']], [], []],
     'form' => [[], ['_controller' => 'App\\Controller\\BooksController::formAdd'], [], [['text', '/form']], [], []],
     'updateData' => [[], ['_controller' => 'App\\Controller\\BooksController::updateData'], [], [['text', '/update']], [], []],
-    'updateImage' => [[], ['_controller' => 'App\\Controller\\BooksController::updateImage'], [], [['text', '/updateimage']], [], []],
     'deleteBook' => [[], ['_controller' => 'App\\Controller\\BooksController::deleteBook'], [], [['text', '/deletebook']], [], []],
     'readAutors' => [[], ['_controller' => 'App\\Controller\\AuthorController::readData'], [], [['text', '/getauthors']], [], []],
     'formAutors' => [[], ['_controller' => 'App\\Controller\\AuthorController::formAdd'], [], [['text', '/formautors']], [], []],

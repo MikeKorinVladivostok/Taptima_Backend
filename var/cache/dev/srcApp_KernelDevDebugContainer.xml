@@ -349,6 +349,8 @@
         <argument type="service" id=".service_locator.vdmMuyE.App\Controller\BooksController"/>
       </call>
     </service>
+    <service id="App\Events\BookCount" class="App\Events\BookCount" autowire="true" autoconfigure="true"/>
+    <service id="App\Events\EventListener" class="App\Events\EventListener" autowire="true" autoconfigure="true"/>
     <service id="App\Form\Type\AuthorForm" class="App\Form\Type\AuthorForm" autowire="true" autoconfigure="true"/>
     <service id="App\Form\Type\BookForm" class="App\Form\Type\BookForm" autowire="true" autoconfigure="true"/>
     <service id="App\Repository\AuthorsRepository" class="App\Repository\AuthorsRepository" autowire="true" autoconfigure="true">

@@ -84,27 +84,10 @@ class BooksController extends AbstractController
     }
 
 
-    public function updateImage(){
-        $request = $_POST;
-        $file = $_FILES;
-
-//        $entityManager = $this->getDoctrine()->getManager();
-//        $product = $entityManager->getRepository(Books::class)->find($request['id']);
-//
-//        $fotoname = rand(1000,9999). time().'_'.$_FILES['name']['image'];
-//        $destiation_dir = basename('/public/image/'. $fotoname);
-//        move_uploaded_file($_FILES['tmp_name']['image'], $destiation_dir );
-//
-//        $product -> setImage($destiation_dir);
-//        $entityManager->flush();
-
-        return new JsonResponse(['status' => 'ok','data' => $file]);
-    }
 
     public function updateData()
     {
         $request = $_POST;
-//        $file = $_FILES;
 
         $entityManager = $this->getDoctrine()->getManager();
         $product = $entityManager->getRepository(Books::class)->find($request['id']);

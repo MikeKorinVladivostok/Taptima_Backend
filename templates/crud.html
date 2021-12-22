@@ -5,6 +5,37 @@
     <title>Title</title>
     <title>width: 100%</title>
     <style>
+        #myInput {
+            background-position: 10px 12px;
+            background-repeat: no-repeat;
+            width: 100%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+        }
+
+        #dataTable {
+            border-collapse: collapse; /* Свернуть границы */
+            width: 100%; /* Полная ширина */
+            border: 1px solid #ddd; /* Добавить серую границу */
+            font-size: 18px; /* Увеличить размер шрифта */
+        }
+
+        #dataTable th, #myTable td {
+            text-align: left; /* Выравнивание текста по левому краю */
+            padding: 12px; /* Добавить отступ */
+        }
+
+        #dataTable tr {
+            /* Добавить нижнюю границу для всех строк таблицы */
+            border-bottom: 1px solid #ddd;
+        }
+
+        #dataTable tr.header, #myTable tr:hover {
+            /* Добавить серый цвет фона для заголовка таблицы и при наведении курсора мыши */
+            background-color: #f1f1f1;
+        }
         .btn {
             display: inline-block;
             box-sizing: border-box;
@@ -87,6 +118,27 @@
 <!--<link  rel = "stylesheet"  href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" >-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
+
+    function findText(inputText,classN) {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById(inputText);
+        filter = input.value.toUpperCase();
+        table = document.getElementById("dataTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 1; i < tr.length; i++) {
+            td = tr[i].querySelector(classN);
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+
     $('body').on('click', '.toolbar-img', function(){
         var url = prompt('Введите адрес изображения', 'https://sun9-47.userapi.com/c11145/u17421543/-14/m_0762c474.jpg');
 
@@ -216,20 +268,28 @@
                         <table  class="table table-striped table-bordered" id="dataTable">
                             <thead>
                                 <tr>
-<!--                                    <th width="5%">id</th>-->
-                                    <th width="5%">Название</th>
-                                    <th width="10%">Автор</th>
-                                    <th width="10%">Описание</th>
-                                    <th width="30%">Обложка</th>
+                                    <th width="5%"><input type="text" id="myInput0" onkeyup="findText('myInput0','.name')" placeholder="Поиск по названию"></th>
+                                    <th width="10%"><input type="text" id="myInput1" onkeyup="findText('myInput1','.author')" placeholder="Поиск по автору"></th>
+                                    <th width="10%"><input type="text" id="myInput2" onkeyup="findText('myInput2','.title')" placeholder="Поиск по описаню"></th>
+                                    <th width="30%"></th>
                                     <th width="15%" class="year" >
-                                    Год публикации</th>
-                                    <th width="15%">Действия</th>
+                                        <input type="text" id="myInput3" onkeyup="findText('myInput3','.year')" placeholder="Поиск по году"></th>
+                                    <th width="15%"></th>
                                 </tr>
+                                    <tr class="header">
+                                        <th width="5%">Название</th>
+                                        <th width="10%">Автор</th>
+                                        <th width="10%">Описание</th>
+                                        <th width="30%">Обложка</th>
+                                        <th width="15%" class="year" >
+                                        Год публикации</th>
+                                        <th width="15%">Действия</th>
+                                </tr>
+
                                 </thead>
                                 <tbody id="userData">
                                 {% for arr in array %}
                                 <tr id="{{ arr.id}}">
-<!--                                    <td>{{ arr.id}}</td>-->
                                     <td>
                                         <span class="editSpan name">{{ arr.name}}</span>
                                         <input class="editInput name form-control input-sm" type="text" name="name"

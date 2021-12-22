@@ -17,7 +17,6 @@ return [
         '/add' => [[['_route' => 'WriteBook', '_controller' => 'App\\Controller\\BooksController::writeData'], null, null, null, false, false, null]],
         '/form' => [[['_route' => 'form', '_controller' => 'App\\Controller\\BooksController::formAdd'], null, null, null, false, false, null]],
         '/update' => [[['_route' => 'updateData', '_controller' => 'App\\Controller\\BooksController::updateData'], null, null, null, false, false, null]],
-        '/updateimage' => [[['_route' => 'updateImage', '_controller' => 'App\\Controller\\BooksController::updateImage'], null, null, null, false, false, null]],
         '/deletebook' => [[['_route' => 'deleteBook', '_controller' => 'App\\Controller\\BooksController::deleteBook'], null, null, null, false, false, null]],
         '/getauthors' => [[['_route' => 'readAutors', '_controller' => 'App\\Controller\\AuthorController::readData'], null, null, null, false, false, null]],
         '/formautors' => [[['_route' => 'formAutors', '_controller' => 'App\\Controller\\AuthorController::formAdd'], null, null, null, false, false, null]],

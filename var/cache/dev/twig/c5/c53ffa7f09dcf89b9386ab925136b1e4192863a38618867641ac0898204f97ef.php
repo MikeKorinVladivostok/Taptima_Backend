@@ -213,6 +213,7 @@ class __TwigTemplate_2cfffec978f6349c68e9d66fe803905dd20aaf0e92484395ee575912b8c
                 <div class=\"card-header\">Авторы</div>
                 <div class=\"card-body\">
                     <div class=\"toolbar\">
+                        <input type=\"text\" id=\"myInput\" onkeyup=\"myFunction()\" placeholder=\"Поиск имен..\">
                         <table  class=\"table table-striped table-bordered\" id=\"dataTable\">
                             <thead>
                                 <tr>
@@ -224,38 +225,38 @@ class __TwigTemplate_2cfffec978f6349c68e9d66fe803905dd20aaf0e92484395ee575912b8c
                             </thead>
                             <tbody id=\"userData\">
                                 ";
-        // line 184
+        // line 185
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["authors"]) || array_key_exists("authors", $context) ? $context["authors"] : (function () { throw new RuntimeError('Variable "authors" does not exist.', 184, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["authors"]) || array_key_exists("authors", $context) ? $context["authors"] : (function () { throw new RuntimeError('Variable "authors" does not exist.', 185, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["author"]) {
-            // line 185
+            // line 186
             echo "                                    <tr id=\"";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["author"], "id", [], "any", false, false, false, 185), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["author"], "id", [], "any", false, false, false, 186), "html", null, true);
             echo "\">
                                         <td>";
-            // line 186
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["author"], "id", [], "any", false, false, false, 186), "html", null, true);
+            // line 187
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["author"], "id", [], "any", false, false, false, 187), "html", null, true);
             echo "</td>
                                         <td>
                                             <span class=\"books\">";
-            // line 188
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["author"], "books", [], "any", false, false, false, 188), "html", null, true);
+            // line 189
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["author"], "books", [], "any", false, false, false, 189), "html", null, true);
             echo "</span>
                                             <input class=\"book input\" type=\"text\" name=\"books\"
                                                    value=\"";
-            // line 190
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["author"], "books", [], "any", false, false, false, 190), "html", null, true);
+            // line 191
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["author"], "books", [], "any", false, false, false, 191), "html", null, true);
             echo "\" style=\"display: none;\">
                                         </td>
                                         <td>
                                             <span class=\"editSpan autors\">";
-            // line 193
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["author"], "autors", [], "any", false, false, false, 193), "html", null, true);
+            // line 194
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["author"], "autors", [], "any", false, false, false, 194), "html", null, true);
             echo "</span>
                                             <input class=\"editInput autors form-control input-sm\" type=\"text\" name=\"autors\"
                                                    value=\"";
-            // line 195
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["author"], "autors", [], "any", false, false, false, 195), "html", null, true);
+            // line 196
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["author"], "autors", [], "any", false, false, false, 196), "html", null, true);
             echo "\" style=\"display: none;\">
                                         </td>
                                         <td>
@@ -272,7 +273,7 @@ class __TwigTemplate_2cfffec978f6349c68e9d66fe803905dd20aaf0e92484395ee575912b8c
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['author'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 207
+        // line 208
         echo "                            </tbody>
                         </table>
                     </div>
@@ -308,7 +309,7 @@ class __TwigTemplate_2cfffec978f6349c68e9d66fe803905dd20aaf0e92484395ee575912b8c
 
     public function getDebugInfo()
     {
-        return array (  276 => 207,  258 => 195,  253 => 193,  247 => 190,  242 => 188,  237 => 186,  232 => 185,  228 => 184,  43 => 1,);
+        return array (  277 => 208,  259 => 196,  254 => 194,  248 => 191,  243 => 189,  238 => 187,  233 => 186,  229 => 185,  43 => 1,);
     }
 
     public function getSourceContext()
@@ -486,6 +487,7 @@ class __TwigTemplate_2cfffec978f6349c68e9d66fe803905dd20aaf0e92484395ee575912b8c
                 <div class=\"card-header\">Авторы</div>
                 <div class=\"card-body\">
                     <div class=\"toolbar\">
+                        <input type=\"text\" id=\"myInput\" onkeyup=\"myFunction()\" placeholder=\"Поиск имен..\">
                         <table  class=\"table table-striped table-bordered\" id=\"dataTable\">
                             <thead>
                                 <tr>

@@ -47,6 +47,37 @@ class __TwigTemplate_f45c409438ef7ba480aefd4b530ad1f2c063db69239bf49d0d4367b438b
     <title>Title</title>
     <title>width: 100%</title>
     <style>
+        #myInput {
+            background-position: 10px 12px;
+            background-repeat: no-repeat;
+            width: 100%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+        }
+
+        #dataTable {
+            border-collapse: collapse; /* Свернуть границы */
+            width: 100%; /* Полная ширина */
+            border: 1px solid #ddd; /* Добавить серую границу */
+            font-size: 18px; /* Увеличить размер шрифта */
+        }
+
+        #dataTable th, #myTable td {
+            text-align: left; /* Выравнивание текста по левому краю */
+            padding: 12px; /* Добавить отступ */
+        }
+
+        #dataTable tr {
+            /* Добавить нижнюю границу для всех строк таблицы */
+            border-bottom: 1px solid #ddd;
+        }
+
+        #dataTable tr.header, #myTable tr:hover {
+            /* Добавить серый цвет фона для заголовка таблицы и при наведении курсора мыши */
+            background-color: #f1f1f1;
+        }
         .btn {
             display: inline-block;
             box-sizing: border-box;
@@ -129,6 +160,27 @@ class __TwigTemplate_f45c409438ef7ba480aefd4b530ad1f2c063db69239bf49d0d4367b438b
 <!--<link  rel = \"stylesheet\"  href = \"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css\" >-->
 <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js\"></script>
 <script>
+
+    function findText(inputText,classN) {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById(inputText);
+        filter = input.value.toUpperCase();
+        table = document.getElementById(\"dataTable\");
+        tr = table.getElementsByTagName(\"tr\");
+        for (i = 1; i < tr.length; i++) {
+            td = tr[i].querySelector(classN);
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = \"\";
+                } else {
+                    tr[i].style.display = \"none\";
+                }
+            }
+        }
+    }
+    
+
     \$('body').on('click', '.toolbar-img', function(){
         var url = prompt('Введите адрес изображения', 'https://sun9-47.userapi.com/c11145/u17421543/-14/m_0762c474.jpg');
 
@@ -258,97 +310,102 @@ class __TwigTemplate_f45c409438ef7ba480aefd4b530ad1f2c063db69239bf49d0d4367b438b
                         <table  class=\"table table-striped table-bordered\" id=\"dataTable\">
                             <thead>
                                 <tr>
-<!--                                    <th width=\"5%\">id</th>-->
-                                    <th width=\"5%\">Название</th>
-                                    <th width=\"10%\">Автор</th>
-                                    <th width=\"10%\">Описание</th>
-                                    <th width=\"30%\">Обложка</th>
+                                    <th width=\"5%\"><input type=\"text\" id=\"myInput0\" onkeyup=\"findText('myInput0','.name')\" placeholder=\"Поиск по названию\"></th>
+                                    <th width=\"10%\"><input type=\"text\" id=\"myInput1\" onkeyup=\"findText('myInput1','.author')\" placeholder=\"Поиск по автору\"></th>
+                                    <th width=\"10%\"><input type=\"text\" id=\"myInput2\" onkeyup=\"findText('myInput2','.title')\" placeholder=\"Поиск по описаню\"></th>
+                                    <th width=\"30%\"></th>
                                     <th width=\"15%\" class=\"year\" >
-                                    Год публикации</th>
-                                    <th width=\"15%\">Действия</th>
+                                        <input type=\"text\" id=\"myInput3\" onkeyup=\"findText('myInput3','.year')\" placeholder=\"Поиск по году\"></th>
+                                    <th width=\"15%\"></th>
                                 </tr>
+                                    <tr class=\"header\">
+                                        <th width=\"5%\">Название</th>
+                                        <th width=\"10%\">Автор</th>
+                                        <th width=\"10%\">Описание</th>
+                                        <th width=\"30%\">Обложка</th>
+                                        <th width=\"15%\" class=\"year\" >
+                                        Год публикации</th>
+                                        <th width=\"15%\">Действия</th>
+                                </tr>
+
                                 </thead>
                                 <tbody id=\"userData\">
                                 ";
-        // line 230
+        // line 291
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["array"]) || array_key_exists("array", $context) ? $context["array"] : (function () { throw new RuntimeError('Variable "array" does not exist.', 230, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["array"]) || array_key_exists("array", $context) ? $context["array"] : (function () { throw new RuntimeError('Variable "array" does not exist.', 291, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["arr"]) {
-            // line 231
+            // line 292
             echo "                                <tr id=\"";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["arr"], "id", [], "any", false, false, false, 231), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["arr"], "id", [], "any", false, false, false, 292), "html", null, true);
             echo "\">
-<!--                                    <td>";
-            // line 232
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["arr"], "id", [], "any", false, false, false, 232), "html", null, true);
-            echo "</td>-->
                                     <td>
                                         <span class=\"editSpan name\">";
-            // line 234
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["arr"], "name", [], "any", false, false, false, 234), "html", null, true);
+            // line 294
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["arr"], "name", [], "any", false, false, false, 294), "html", null, true);
             echo "</span>
                                         <input class=\"editInput name form-control input-sm\" type=\"text\" name=\"name\"
                                                value=\"";
-            // line 236
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["arr"], "name", [], "any", false, false, false, 236), "html", null, true);
+            // line 296
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["arr"], "name", [], "any", false, false, false, 296), "html", null, true);
             echo "\" style=\"display: none;\">
                                     </td>
                                     <td>
                                         <span class=\"editSpan author\">";
-            // line 239
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["arr"], "author_name", [], "any", false, false, false, 239), "html", null, true);
+            // line 299
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["arr"], "author_name", [], "any", false, false, false, 299), "html", null, true);
             echo "</span>
                                         <select class=\"editInput author form-control input-sm\" type=\"text\" name=\"author\"
                                                 style=\"display: none;\">
                                             ";
-            // line 242
+            // line 302
             $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable((isset($context["authors"]) || array_key_exists("authors", $context) ? $context["authors"] : (function () { throw new RuntimeError('Variable "authors" does not exist.', 242, $this->source); })()));
+            $context['_seq'] = twig_ensure_traversable((isset($context["authors"]) || array_key_exists("authors", $context) ? $context["authors"] : (function () { throw new RuntimeError('Variable "authors" does not exist.', 302, $this->source); })()));
             foreach ($context['_seq'] as $context["_key"] => $context["author"]) {
-                // line 243
+                // line 303
                 echo "                                                <option ";
-                echo (((0 === twig_compare(twig_get_attribute($this->env, $this->source, $context["author"], "id", [], "any", false, false, false, 243), twig_get_attribute($this->env, $this->source, $context["arr"], "author", [], "any", false, false, false, 243)))) ? ("selected") : (null));
+                echo (((0 === twig_compare(twig_get_attribute($this->env, $this->source, $context["author"], "id", [], "any", false, false, false, 303), twig_get_attribute($this->env, $this->source, $context["arr"], "author", [], "any", false, false, false, 303)))) ? ("selected") : (null));
                 echo " value=\"";
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["author"], "id", [], "any", false, false, false, 243), "html", null, true);
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["author"], "id", [], "any", false, false, false, 303), "html", null, true);
                 echo "\">";
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["author"], "autors", [], "any", false, false, false, 243), "html", null, true);
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["author"], "autors", [], "any", false, false, false, 303), "html", null, true);
                 echo "</option>
                                             ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['author'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 245
+            // line 305
             echo "                                        </select>
                                     </td>
                                     <td>
                                         <span class=\"editSpan title\">";
-            // line 248
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["arr"], "title", [], "any", false, false, false, 248), "html", null, true);
+            // line 308
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["arr"], "title", [], "any", false, false, false, 308), "html", null, true);
             echo "</span>
                                         <input class=\"editInput title form-control input-sm\" type=\"text\" name=\"title\"
                                                value=\"";
-            // line 250
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["arr"], "title", [], "any", false, false, false, 250), "html", null, true);
+            // line 310
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["arr"], "title", [], "any", false, false, false, 310), "html", null, true);
             echo "\" style=\"display: none;\">
                                     </td>
                                     <td><img src=\"";
-            // line 252
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["arr"], "image", [], "any", false, false, false, 252), "html", null, true);
+            // line 312
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["arr"], "image", [], "any", false, false, false, 312), "html", null, true);
             echo "\" alt=\"\" width=\"135\" height=\"135\" class=\"photo editSpan image\">
                                         <input type=\"file\" id=\"js-file\" multiple=\"multiple\" class=\"editInput image form-control input-sm\" name=\"image\"
                                                value=\"\" style=\"display: none;\">
                                     </td>
                                     <td>
                                         <span class=\"editSpan year\">";
-            // line 257
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["arr"], "year", [], "any", false, false, false, 257), "html", null, true);
+            // line 317
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["arr"], "year", [], "any", false, false, false, 317), "html", null, true);
             echo "</span>
                                         <label>
                                             <input class=\"editInput year form-control input-sm\" type=\"text\" name=\"year\"
                                                    value=\"";
-            // line 260
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["arr"], "year", [], "any", false, false, false, 260), "html", null, true);
+            // line 320
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["arr"], "year", [], "any", false, false, false, 320), "html", null, true);
             echo "\" style=\"display: none;\">
                                         </label>
                                     </td>
@@ -366,7 +423,7 @@ class __TwigTemplate_f45c409438ef7ba480aefd4b530ad1f2c063db69239bf49d0d4367b438b
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['arr'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 273
+        // line 333
         echo "                            </tbody>
                         </table>
                     </div>
@@ -404,7 +461,7 @@ class __TwigTemplate_f45c409438ef7ba480aefd4b530ad1f2c063db69239bf49d0d4367b438b
 
     public function getDebugInfo()
     {
-        return array (  370 => 273,  351 => 260,  345 => 257,  337 => 252,  332 => 250,  327 => 248,  322 => 245,  309 => 243,  305 => 242,  299 => 239,  293 => 236,  288 => 234,  283 => 232,  278 => 231,  274 => 230,  43 => 1,);
+        return array (  427 => 333,  408 => 320,  402 => 317,  394 => 312,  389 => 310,  384 => 308,  379 => 305,  366 => 303,  362 => 302,  356 => 299,  350 => 296,  345 => 294,  339 => 292,  335 => 291,  43 => 1,);
     }
 
     public function getSourceContext()
@@ -416,6 +473,37 @@ class __TwigTemplate_f45c409438ef7ba480aefd4b530ad1f2c063db69239bf49d0d4367b438b
     <title>Title</title>
     <title>width: 100%</title>
     <style>
+        #myInput {
+            background-position: 10px 12px;
+            background-repeat: no-repeat;
+            width: 100%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+        }
+
+        #dataTable {
+            border-collapse: collapse; /* Свернуть границы */
+            width: 100%; /* Полная ширина */
+            border: 1px solid #ddd; /* Добавить серую границу */
+            font-size: 18px; /* Увеличить размер шрифта */
+        }
+
+        #dataTable th, #myTable td {
+            text-align: left; /* Выравнивание текста по левому краю */
+            padding: 12px; /* Добавить отступ */
+        }
+
+        #dataTable tr {
+            /* Добавить нижнюю границу для всех строк таблицы */
+            border-bottom: 1px solid #ddd;
+        }
+
+        #dataTable tr.header, #myTable tr:hover {
+            /* Добавить серый цвет фона для заголовка таблицы и при наведении курсора мыши */
+            background-color: #f1f1f1;
+        }
         .btn {
             display: inline-block;
             box-sizing: border-box;
@@ -498,6 +586,27 @@ class __TwigTemplate_f45c409438ef7ba480aefd4b530ad1f2c063db69239bf49d0d4367b438b
 <!--<link  rel = \"stylesheet\"  href = \"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css\" >-->
 <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js\"></script>
 <script>
+
+    function findText(inputText,classN) {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById(inputText);
+        filter = input.value.toUpperCase();
+        table = document.getElementById(\"dataTable\");
+        tr = table.getElementsByTagName(\"tr\");
+        for (i = 1; i < tr.length; i++) {
+            td = tr[i].querySelector(classN);
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = \"\";
+                } else {
+                    tr[i].style.display = \"none\";
+                }
+            }
+        }
+    }
+    
+
     \$('body').on('click', '.toolbar-img', function(){
         var url = prompt('Введите адрес изображения', 'https://sun9-47.userapi.com/c11145/u17421543/-14/m_0762c474.jpg');
 
@@ -627,20 +736,28 @@ class __TwigTemplate_f45c409438ef7ba480aefd4b530ad1f2c063db69239bf49d0d4367b438b
                         <table  class=\"table table-striped table-bordered\" id=\"dataTable\">
                             <thead>
                                 <tr>
-<!--                                    <th width=\"5%\">id</th>-->
-                                    <th width=\"5%\">Название</th>
-                                    <th width=\"10%\">Автор</th>
-                                    <th width=\"10%\">Описание</th>
-                                    <th width=\"30%\">Обложка</th>
+                                    <th width=\"5%\"><input type=\"text\" id=\"myInput0\" onkeyup=\"findText('myInput0','.name')\" placeholder=\"Поиск по названию\"></th>
+                                    <th width=\"10%\"><input type=\"text\" id=\"myInput1\" onkeyup=\"findText('myInput1','.author')\" placeholder=\"Поиск по автору\"></th>
+                                    <th width=\"10%\"><input type=\"text\" id=\"myInput2\" onkeyup=\"findText('myInput2','.title')\" placeholder=\"Поиск по описаню\"></th>
+                                    <th width=\"30%\"></th>
                                     <th width=\"15%\" class=\"year\" >
-                                    Год публикации</th>
-                                    <th width=\"15%\">Действия</th>
+                                        <input type=\"text\" id=\"myInput3\" onkeyup=\"findText('myInput3','.year')\" placeholder=\"Поиск по году\"></th>
+                                    <th width=\"15%\"></th>
                                 </tr>
+                                    <tr class=\"header\">
+                                        <th width=\"5%\">Название</th>
+                                        <th width=\"10%\">Автор</th>
+                                        <th width=\"10%\">Описание</th>
+                                        <th width=\"30%\">Обложка</th>
+                                        <th width=\"15%\" class=\"year\" >
+                                        Год публикации</th>
+                                        <th width=\"15%\">Действия</th>
+                                </tr>
+
                                 </thead>
                                 <tbody id=\"userData\">
                                 {% for arr in array %}
                                 <tr id=\"{{ arr.id}}\">
-<!--                                    <td>{{ arr.id}}</td>-->
                                     <td>
                                         <span class=\"editSpan name\">{{ arr.name}}</span>
                                         <input class=\"editInput name form-control input-sm\" type=\"text\" name=\"name\"

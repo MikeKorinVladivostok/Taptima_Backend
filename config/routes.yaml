@@ -14,10 +14,6 @@ updateData:
   path: /update
   controller: App\Controller\BooksController::updateData
 
-updateImage:
-  path: /updateimage
-  controller: App\Controller\BooksController::updateImage
-
 deleteBook:
   path: /deletebook
   controller: App\Controller\BooksController::deleteBook
@@ -45,3 +41,4 @@ deleteAuthors:
 updateDataAuthor:
   path: /updateAuthor
   controller: App\Controller\AuthorController::updateAuthor
+
