@@ -20,10 +20,10 @@ return [
         '/admin/core/set-object-field-value' => [[['_route' => 'sonata_admin_set_object_field_value', '_controller' => 'sonata.admin.action.set_object_field_value'], null, null, null, false, false, null]],
         '/admin/search' => [[['_route' => 'sonata_admin_search', '_controller' => 'sonata.admin.action.search'], null, null, null, false, false, null]],
         '/admin/core/get-autocomplete-items' => [[['_route' => 'sonata_admin_retrieve_autocomplete_items', '_controller' => 'sonata.admin.action.retrieve_autocomplete_items'], null, null, null, false, false, null]],
-        '/admin/app/category/list' => [[['_route' => 'admin_app_category_list', '_controller' => 'sonata.admin.controller.crud::listAction', '_sonata_admin' => 'admin.category', '_sonata_name' => 'admin_app_category_list'], null, null, null, false, false, null]],
-        '/admin/app/category/create' => [[['_route' => 'admin_app_category_create', '_controller' => 'sonata.admin.controller.crud::createAction', '_sonata_admin' => 'admin.category', '_sonata_name' => 'admin_app_category_create'], null, null, null, false, false, null]],
-        '/admin/app/category/batch' => [[['_route' => 'admin_app_category_batch', '_controller' => 'sonata.admin.controller.crud::batchAction', '_sonata_admin' => 'admin.category', '_sonata_name' => 'admin_app_category_batch'], null, null, null, false, false, null]],
-        '/admin/app/category/export' => [[['_route' => 'admin_app_category_export', '_controller' => 'sonata.admin.controller.crud::exportAction', '_sonata_admin' => 'admin.category', '_sonata_name' => 'admin_app_category_export'], null, null, null, false, false, null]],
+        '/admin/app/books/list' => [[['_route' => 'admin_app_books_list', '_controller' => 'sonata.admin.controller.crud::listAction', '_sonata_admin' => 'admin.books', '_sonata_name' => 'admin_app_books_list'], null, null, null, false, false, null]],
+        '/admin/app/books/create' => [[['_route' => 'admin_app_books_create', '_controller' => 'sonata.admin.controller.crud::createAction', '_sonata_admin' => 'admin.books', '_sonata_name' => 'admin_app_books_create'], null, null, null, false, false, null]],
+        '/admin/app/books/batch' => [[['_route' => 'admin_app_books_batch', '_controller' => 'sonata.admin.controller.crud::batchAction', '_sonata_admin' => 'admin.books', '_sonata_name' => 'admin_app_books_batch'], null, null, null, false, false, null]],
+        '/admin/app/books/export' => [[['_route' => 'admin_app_books_export', '_controller' => 'sonata.admin.controller.crud::exportAction', '_sonata_admin' => 'admin.books', '_sonata_name' => 'admin_app_books_export'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'blog_list', '_controller' => 'App\\Controller\\BooksController::readData'], null, null, null, false, false, null]],
         '/add' => [[['_route' => 'WriteBook', '_controller' => 'App\\Controller\\BooksController::writeData'], null, null, null, false, false, null]],
         '/form' => [[['_route' => 'form', '_controller' => 'App\\Controller\\BooksController::formAdd'], null, null, null, false, false, null]],
@@ -55,10 +55,10 @@ return [
                 .')'
                 .'|/admin/(?'
                     .'|core/get\\-short\\-object\\-description(?:\\.(html|json))?(*:233)'
-                    .'|app/category/([^/]++)/(?'
-                        .'|edit(*:270)'
-                        .'|delete(*:284)'
-                        .'|show(*:296)'
+                    .'|app/books/([^/]++)/(?'
+                        .'|edit(*:267)'
+                        .'|delete(*:281)'
+                        .'|show(*:293)'
                     .')'
                 .')'
             .')/?$}sD',
@@ -72,10 +72,10 @@ return [
         149 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         159 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
         233 => [[['_route' => 'sonata_admin_short_object_information', '_controller' => 'sonata.admin.action.get_short_object_description', '_format' => 'html'], ['_format'], null, null, false, true, null]],
-        270 => [[['_route' => 'admin_app_category_edit', '_controller' => 'sonata.admin.controller.crud::editAction', '_sonata_admin' => 'admin.category', '_sonata_name' => 'admin_app_category_edit'], ['id'], null, null, false, false, null]],
-        284 => [[['_route' => 'admin_app_category_delete', '_controller' => 'sonata.admin.controller.crud::deleteAction', '_sonata_admin' => 'admin.category', '_sonata_name' => 'admin_app_category_delete'], ['id'], null, null, false, false, null]],
-        296 => [
-            [['_route' => 'admin_app_category_show', '_controller' => 'sonata.admin.controller.crud::showAction', '_sonata_admin' => 'admin.category', '_sonata_name' => 'admin_app_category_show'], ['id'], null, null, false, false, null],
+        267 => [[['_route' => 'admin_app_books_edit', '_controller' => 'sonata.admin.controller.crud::editAction', '_sonata_admin' => 'admin.books', '_sonata_name' => 'admin_app_books_edit'], ['id'], null, null, false, false, null]],
+        281 => [[['_route' => 'admin_app_books_delete', '_controller' => 'sonata.admin.controller.crud::deleteAction', '_sonata_admin' => 'admin.books', '_sonata_name' => 'admin_app_books_delete'], ['id'], null, null, false, false, null]],
+        293 => [
+            [['_route' => 'admin_app_books_show', '_controller' => 'sonata.admin.controller.crud::showAction', '_sonata_admin' => 'admin.books', '_sonata_name' => 'admin_app_books_show'], ['id'], null, null, false, false, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

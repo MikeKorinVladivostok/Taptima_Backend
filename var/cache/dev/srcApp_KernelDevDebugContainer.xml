@@ -658,10 +658,10 @@
     <service id="kernel" class="App\Kernel" public="true" synthetic="true">
       <tag name="routing.route_loader"/>
     </service>
-    <service id="admin.category" class="App\Admin\CategoryAdmin" shared="false" autowire="true" autoconfigure="true">
-      <tag name="sonata.admin" manager_type="orm" label="Category"/>
-      <argument>admin.category</argument>
-      <argument>App\Entity\Category</argument>
+    <service id="admin.books" class="App\Admin\CategoryAdmin" shared="false" autowire="true" autoconfigure="true">
+      <tag name="sonata.admin" manager_type="orm" label="Books"/>
+      <argument>admin.books</argument>
+      <argument>App\Entity\Books</argument>
       <argument>sonata.admin.controller.crud</argument>
       <call method="setManagerType">
         <argument>orm</argument>
@@ -713,7 +713,7 @@
         <argument>default</argument>
       </call>
       <call method="setLabel">
-        <argument>Category</argument>
+        <argument>Books</argument>
       </call>
       <call method="setListModes">
         <argument type="collection">
@@ -726,7 +726,7 @@
         </argument>
       </call>
       <call method="setTemplateRegistry">
-        <argument type="service" id="admin.category.template_registry"/>
+        <argument type="service" id="admin.books.template_registry"/>
       </call>
       <call method="setSecurityInformation">
         <argument type="collection"/>
@@ -5937,9 +5937,9 @@
       </call>
     </service>
     <service id="sonata.admin.pool" class="Sonata\AdminBundle\Admin\Pool">
-      <argument type="service" id=".service_locator.QAbgU6l"/>
+      <argument type="service" id=".service_locator.p4Paq2R"/>
       <argument type="collection">
-        <argument>admin.category</argument>
+        <argument>admin.books</argument>
       </argument>
       <argument type="collection">
         <argument key="default" type="collection">
@@ -5948,8 +5948,8 @@
           <argument key="icon">fas fa-folder</argument>
           <argument key="items" type="collection">
             <argument type="collection">
-              <argument key="admin">admin.category</argument>
-              <argument key="label">Category</argument>
+              <argument key="admin">admin.books</argument>
+              <argument key="label">Books</argument>
               <argument key="route"></argument>
               <argument key="route_params" type="collection"/>
               <argument key="route_absolute">false</argument>
@@ -5961,8 +5961,8 @@
         </argument>
       </argument>
       <argument type="collection">
-        <argument key="App\Entity\Category" type="collection">
-          <argument>admin.category</argument>
+        <argument key="App\Entity\Books" type="collection">
+          <argument>admin.books</argument>
         </argument>
       </argument>
     </service>
@@ -7160,14 +7160,14 @@
         <argument key="twig" type="service_closure" id="knp_menu.renderer.twig"/>
       </argument>
     </service>
-    <service id="admin.category.template_registry" class="Sonata\AdminBundle\Templating\MutableTemplateRegistry" public="true">
+    <service id="admin.books.template_registry" class="Sonata\AdminBundle\Templating\MutableTemplateRegistry" public="true">
       <tag name="sonata.admin.template_registry"/>
       <argument>%sonata.admin.configuration.templates%</argument>
     </service>
-    <service id=".service_locator.QAbgU6l" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.p4Paq2R" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="admin.category" type="service_closure" id="admin.category"/>
+        <argument key="admin.books" type="service_closure" id="admin.books"/>
       </argument>
     </service>
     <service id=".service_locator.zTMvT1b" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
