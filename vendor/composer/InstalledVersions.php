@@ -19,7 +19,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'fc3772b5b4c0b257cf8ca90e5d8e7c20c9c5d41d',
+    'reference' => '4f34fd0c136156c3cedde3b6f77a9b0f1491ee30',
     'name' => '__root__',
   ),
   'versions' => 
@@ -31,7 +31,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'fc3772b5b4c0b257cf8ca90e5d8e7c20c9c5d41d',
+      'reference' => '4f34fd0c136156c3cedde3b6f77a9b0f1491ee30',
     ),
     'composer/package-versions-deprecated' => 
     array (
@@ -203,6 +203,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '006aa5d32f887a4db4353b13b5b5095613e0611f',
+    ),
+    'friendsofsymfony/user-bundle' => 
+    array (
+      'pretty_version' => 'v2.2.2',
+      'version' => '2.2.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '813161b132b28806d67e355e39a1a4680bb9e308',
     ),
     'jms/metadata' => 
     array (
@@ -1379,6 +1388,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '9ffaaba53c61ba75a3c7a3a779051d1e9ec4fd2d',
+    ),
+    'symfony/templating' => 
+    array (
+      'pretty_version' => 'v4.4.30',
+      'version' => '4.4.30.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '43f2cd3cd55d9517a296f162fb8209ac7f1f0153',
     ),
     'symfony/translation' => 
     array (

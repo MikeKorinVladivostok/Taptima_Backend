@@ -63,6 +63,7 @@ class ComposerStaticInit5408e6379f6e325078b38522a8befc5e
             'Symfony\\Component\\VarDumper\\' => 28,
             'Symfony\\Component\\Validator\\' => 28,
             'Symfony\\Component\\Translation\\' => 30,
+            'Symfony\\Component\\Templating\\' => 29,
             'Symfony\\Component\\String\\' => 25,
             'Symfony\\Component\\Stopwatch\\' => 28,
             'Symfony\\Component\\Serializer\\' => 29,
@@ -155,6 +156,10 @@ class ComposerStaticInit5408e6379f6e325078b38522a8befc5e
         'J' => 
         array (
             'JMS\\Serializer\\' => 15,
+        ),
+        'F' => 
+        array (
+            'FOS\\UserBundle\\' => 15,
         ),
         'E' => 
         array (
@@ -292,6 +297,10 @@ class ComposerStaticInit5408e6379f6e325078b38522a8befc5e
         'Symfony\\Component\\Translation\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/translation',
+        ),
+        'Symfony\\Component\\Templating\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/templating',
         ),
         'Symfony\\Component\\String\\' => 
         array (
@@ -600,6 +609,10 @@ class ComposerStaticInit5408e6379f6e325078b38522a8befc5e
         'JMS\\Serializer\\' => 
         array (
             0 => __DIR__ . '/..' . '/jms/serializer/src',
+        ),
+        'FOS\\UserBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/friendsofsymfony/user-bundle',
         ),
         'Egulias\\EmailValidator\\' => 
         array (
