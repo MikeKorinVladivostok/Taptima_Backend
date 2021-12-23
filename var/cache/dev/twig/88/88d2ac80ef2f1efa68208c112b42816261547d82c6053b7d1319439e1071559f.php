@@ -179,7 +179,7 @@ class __TwigTemplate_f45c409438ef7ba480aefd4b530ad1f2c063db69239bf49d0d4367b438b
             }
         }
     }
-    
+
 
     \$('body').on('click', '.toolbar-img', function(){
         var url = prompt('Введите адрес изображения', 'https://sun9-47.userapi.com/c11145/u17421543/-14/m_0762c474.jpg');
@@ -605,7 +605,7 @@ class __TwigTemplate_f45c409438ef7ba480aefd4b530ad1f2c063db69239bf49d0d4367b438b
             }
         }
     }
-    
+
 
     \$('body').on('click', '.toolbar-img', function(){
         var url = prompt('Введите адрес изображения', 'https://sun9-47.userapi.com/c11145/u17421543/-14/m_0762c474.jpg');
