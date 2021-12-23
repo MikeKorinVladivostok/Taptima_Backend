@@ -7,6 +7,11 @@ parameters:
     locale: 'en'
 
 services:
+    admin.category:
+        class: App\Admin\CategoryAdmin
+        arguments: [~, App\Entity\Category, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Category }
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
