@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CoauthorController!{% endblock %}
+
+{% block body %}
+
+    {{ form(form, {'action': path('WriteCoAuthor'), 'method': 'POST'}) }}
+
+{% endblock %}

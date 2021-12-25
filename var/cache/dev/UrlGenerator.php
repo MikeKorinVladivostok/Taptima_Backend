@@ -55,4 +55,7 @@ return [
     'updateEventListener' => [[], ['_controller' => 'App\\Controller\\AuthorController::updateEventListener'], [], [['text', '/updateevent']], [], []],
     'deleteAuthors' => [[], ['_controller' => 'App\\Controller\\AuthorController::deleteAuthor'], [], [['text', '/deleteauthor']], [], []],
     'updateDataAuthor' => [[], ['_controller' => 'App\\Controller\\AuthorController::updateAuthor'], [], [['text', '/updateAuthor']], [], []],
+    'FormCoAuthor' => [[], ['_controller' => 'App\\Controller\\CoauthorController::formAdd'], [], [['text', '/formcoauthor']], [], []],
+    'getCoAuthor' => [[], ['_controller' => 'App\\Controller\\CoauthorController::readData'], [], [['text', '/getcoauthors']], [], []],
+    'WriteCoAuthor' => [[], ['_controller' => 'App\\Controller\\CoauthorController::writeData'], [], [['text', '/writeCo']], [], []],
 ];

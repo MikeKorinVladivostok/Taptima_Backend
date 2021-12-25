@@ -42,3 +42,14 @@ updateDataAuthor:
   path: /updateAuthor
   controller: App\Controller\AuthorController::updateAuthor
 
+FormCoAuthor:
+  path: /formcoauthor
+  controller: App\Controller\CoauthorController::formAdd
+
+getCoAuthor:
+  path: /getcoauthors
+  controller: App\Controller\CoauthorController::readData
+
+WriteCoAuthor:
+  path: /writeCo
+  controller: App\Controller\CoauthorController::writeData

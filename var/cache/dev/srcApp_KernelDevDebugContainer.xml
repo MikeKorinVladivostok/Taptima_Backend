@@ -824,15 +824,27 @@
         <argument type="service" id=".service_locator.vdmMuyE.App\Controller\BooksController"/>
       </call>
     </service>
+    <service id="App\Controller\CoauthorController" class="App\Controller\CoauthorController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.vdmMuyE.App\Controller\CoauthorController"/>
+      </call>
+    </service>
     <service id="App\Events\BookCount" class="App\Events\BookCount" autowire="true" autoconfigure="true"/>
     <service id="App\Events\EventListener" class="App\Events\EventListener" autowire="true" autoconfigure="true"/>
     <service id="App\Form\Type\AuthorForm" class="App\Form\Type\AuthorForm" autowire="true" autoconfigure="true"/>
     <service id="App\Form\Type\BookForm" class="App\Form\Type\BookForm" autowire="true" autoconfigure="true"/>
+    <service id="App\Form\Type\CoauthorForm" class="App\Form\Type\CoauthorForm" autowire="true" autoconfigure="true"/>
     <service id="App\Repository\AuthorsRepository" class="App\Repository\AuthorsRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
     <service id="App\Repository\BooksRepository" class="App\Repository\BooksRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\CoauthorsRepository" class="App\Repository\CoauthorsRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
@@ -5227,7 +5239,7 @@
       <factory class="Doctrine\ORM\EntityManager" method="create"/>
     </service>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory" public="false">
-      <argument type="service" id=".service_locator.ElWjTEr"/>
+      <argument type="service" id=".service_locator.fdri2Ee"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -7572,10 +7584,15 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\BooksController" class="App\Controller\BooksController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\BooksController" class="App\Controller\BooksController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\BooksController" class="App\Controller\BooksController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\CoauthorController" class="App\Controller\CoauthorController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\CoauthorController" class="App\Controller\CoauthorController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\CoauthorController" class="App\Controller\CoauthorController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\AuthorsRepository" class="App\Repository\AuthorsRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\AuthorsRepository" class="App\Repository\AuthorsRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\BooksRepository" class="App\Repository\BooksRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\BooksRepository" class="App\Repository\BooksRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CoauthorsRepository" class="App\Repository\CoauthorsRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\CoauthorsRepository" class="App\Repository\CoauthorsRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".service_locator.CmORmuK" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -8172,11 +8189,12 @@
       <argument type="service" id="cache.doctrine.orm.default.result"/>
       <factory class="Doctrine\Common\Cache\Psr6\DoctrineProvider" method="wrap"/>
     </service>
-    <service id=".service_locator.ElWjTEr" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.fdri2Ee" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Repository\AuthorsRepository" type="service_closure" id="App\Repository\AuthorsRepository"/>
         <argument key="App\Repository\BooksRepository" type="service_closure" id="App\Repository\BooksRepository"/>
+        <argument key="App\Repository\CoauthorsRepository" type="service_closure" id="App\Repository\CoauthorsRepository"/>
       </argument>
     </service>
     <service id="debug.security.voter.security.access.authenticated_voter" class="Symfony\Component\Security\Core\Authorization\Voter\TraceableVoter">
@@ -8279,6 +8297,12 @@
     <service id=".service_locator.vdmMuyE.App\Controller\BooksController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\BooksController"/>
       <argument>App\Controller\BooksController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.vdmMuyE" method="withContext"/>
+    </service>
+    <service id=".service_locator.vdmMuyE.App\Controller\CoauthorController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\CoauthorController"/>
+      <argument>App\Controller\CoauthorController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.vdmMuyE" method="withContext"/>
     </service>

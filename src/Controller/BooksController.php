@@ -138,4 +138,19 @@ class BooksController extends AbstractController
         return $this  -> render('books/index.html.twig', ['form' => $form -> createView()]);
     }
 
+//    public function nativeSQL(){
+//        $conn = $this->getDoctrine()->getManager();
+//
+//        $sql = '
+//            SELECT * FROM product p
+//            WHERE p.price > :price
+//            ORDER BY p.price ASC
+//            ';
+//        $stmt = $conn->prepare($sql);
+//        $stmt->execute(['price' => $price]);
+//
+//        // returns an array of arrays (i.e. a raw data set)
+//        return $stmt->fetchAllAssociative();
+//    }
+
 }

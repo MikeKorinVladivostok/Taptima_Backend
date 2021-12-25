@@ -47,6 +47,9 @@ return [
         '/updateevent' => [[['_route' => 'updateEventListener', '_controller' => 'App\\Controller\\AuthorController::updateEventListener'], null, null, null, false, false, null]],
         '/deleteauthor' => [[['_route' => 'deleteAuthors', '_controller' => 'App\\Controller\\AuthorController::deleteAuthor'], null, null, null, false, false, null]],
         '/updateAuthor' => [[['_route' => 'updateDataAuthor', '_controller' => 'App\\Controller\\AuthorController::updateAuthor'], null, null, null, false, false, null]],
+        '/formcoauthor' => [[['_route' => 'FormCoAuthor', '_controller' => 'App\\Controller\\CoauthorController::formAdd'], null, null, null, false, false, null]],
+        '/getcoauthors' => [[['_route' => 'getCoAuthor', '_controller' => 'App\\Controller\\CoauthorController::readData'], null, null, null, false, false, null]],
+        '/writeCo' => [[['_route' => 'WriteCoAuthor', '_controller' => 'App\\Controller\\CoauthorController::writeData'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'

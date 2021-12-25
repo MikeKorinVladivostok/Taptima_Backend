@@ -433,6 +433,12 @@ class __TwigTemplate_931bee2e10b0a699e5b9f25a891b5ba91bfe8a30baf85cad70aeb3ba240
                     <a href=\"/updateevent\" class=\"mb-1 btn btn-primary\" type=\"button\">
                         К авторам
                     </a>
+                    <a href=\"/formcoauthor\" class=\"mb-1 btn btn-primary\" type=\"button\">
+                        Добавить соавтора
+                    </a>
+                    <a href=\"/getcoauthors\" class=\"mb-1 btn btn-primary\" type=\"button\">
+                        Список соавторов
+                    </a>
                 </div>
             </div>
         </div>
@@ -806,6 +812,12 @@ class __TwigTemplate_931bee2e10b0a699e5b9f25a891b5ba91bfe8a30baf85cad70aeb3ba240
                     </a>
                     <a href=\"/updateevent\" class=\"mb-1 btn btn-primary\" type=\"button\">
                         К авторам
+                    </a>
+                    <a href=\"/formcoauthor\" class=\"mb-1 btn btn-primary\" type=\"button\">
+                        Добавить соавтора
+                    </a>
+                    <a href=\"/getcoauthors\" class=\"mb-1 btn btn-primary\" type=\"button\">
+                        Список соавторов
                     </a>
                 </div>
             </div>
